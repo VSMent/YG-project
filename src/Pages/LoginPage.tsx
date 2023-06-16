@@ -5,10 +5,12 @@ import hashPassword from '../Utils/HashPassword'
 import User from '../data/User'
 import { loadFromLS, saveToLS } from '../Utils/LocalStorage'
 import { LS_ITEM_USERS } from '../data/constants'
+import { useToast } from '../Components/shadcn-ui/components/Toast/use-toast'
 
 const correctPass = (user: User, pass: string) => user.pass === pass
 const LoginPage = () => {
   const navigate = useNavigate()
+  const { toast } = useToast()
 
   const [users, setUsers] = useState(loadFromLS(LS_ITEM_USERS) ?? [])
   const findUser = (login: string) => {
@@ -24,6 +26,11 @@ const LoginPage = () => {
       navigate('/')
     } else {
       console.error('wrong pass')
+      toast({
+        title: "Please try again",
+        description: "Wrong login or password combination.",
+        variant: "destructive",
+      })
     }
   }
   const registerHandler = async (login: string, pass: string) => {

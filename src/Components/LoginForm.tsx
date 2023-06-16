@@ -17,7 +17,7 @@ const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
                 loginHandler(loginInput.current?.value ?? '', passInput.current?.value ?? '').catch(console.error)
               }}>Login
       </button>
-      <button type="button"
+      <button className={'bg-amber-800'} type="button"
               onClick={() => {
                 registerHandler(loginInput.current?.value ?? '', passInput.current?.value ?? '').catch(console.error)
               }}>Register
