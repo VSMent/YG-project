@@ -7,7 +7,7 @@ import User from '../data/User'
 
 const correctPass = (user: User, pass: string) => user.pass === pass
 
-const Login = () => {
+const LoginForm = () => {
   const [users, setUsers] = useState(loadFromLS(LS_ITEM_USERS) ?? [])
 
   const loginInput = useRef<HTMLInputElement>(null)
@@ -64,4 +64,4 @@ const Login = () => {
   </>
 }
 
-export default Login
+export default LoginForm

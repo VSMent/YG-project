@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import './App.css'
 import { loadFromLS } from './Utils/LocalStorage'
-import Login from './Components/Login'
 import { LS_ITEM_USERS } from './data/constants'
 import { populateLSWithDummyData } from './Utils/DummyDataGenerator'
+import { RouterProvider } from 'react-router'
+import Router from './Components/Router'
 
 // <header className="App-header">
 //   <img src={logo} className="App-logo" alt="logo" />
@@ -21,6 +22,8 @@ import { populateLSWithDummyData } from './Utils/DummyDataGenerator'
 //   <button type="button" onClick={()=>{saveToLS('key',[1,2,{"asd":1}])}}>SAve</button>
 // </header>
 
+
+
 function App () {
   useEffect(() => {
     const users = loadFromLS(LS_ITEM_USERS)
@@ -28,10 +31,7 @@ function App () {
   }, [])
 
   return (
-    <div className="App">
-      <Login/>
-
-    </div>
+    <RouterProvider router={Router}/>
   )
 }
 
