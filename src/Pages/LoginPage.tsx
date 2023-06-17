@@ -27,9 +27,9 @@ const LoginPage = () => {
     } else {
       console.error('wrong pass')
       toast({
-        title: "Please try again",
-        description: "Wrong login or password combination.",
-        variant: "destructive",
+        title: 'Please try again',
+        description: 'Wrong login or password combination.',
+        variant: 'destructive',
       })
     }
   }
@@ -48,10 +48,14 @@ const LoginPage = () => {
     }
   }
 
-  return <>
-    <LoginForm loginHandler={loginHandler}
-               registerHandler={registerHandler}/>
-  </>
+  return (
+    <>
+      <LoginForm
+        loginHandler={loginHandler}
+        registerHandler={registerHandler}
+      />
+    </>
+  )
 }
 
 export default LoginPage

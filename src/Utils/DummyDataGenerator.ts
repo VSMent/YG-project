@@ -17,5 +17,4 @@ const populateLSWithDummyData = async () => {
   return Promise.resolve()
 }
 
-
 export { populateLSWithDummyData }

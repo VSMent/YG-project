@@ -11,4 +11,4 @@ const NAV_LINKS = {
   SELF_MANAGEMENT: '/self-management',
 }
 
-export { LS_ITEM_USERS,NAV_LINKS }
+export { LS_ITEM_USERS, NAV_LINKS }
