@@ -1,20 +1,59 @@
-import { NavLink } from 'react-router-dom'
 import { NAV_LINKS } from '../data/constants'
-import styles from '../styles/NavBar.module.sass'
+import {
+  Briefcase,
+  CircleDollarSign,
+  Factory,
+  Home,
+  MessagesSquare,
+  PersonStanding,
+  Users,
+  UserSquare,
+} from 'lucide-react'
+import NavBarLink from './NavBarLink'
 
 const NavBar = () => {
-  return <>
-    <ul className={styles.navUl}>
-      <li><NavLink to={NAV_LINKS.MAIN}>Main</NavLink></li>
-      <li><NavLink to={NAV_LINKS.EMPLOYEES}>Employees</NavLink></li>
-      <li><NavLink to={NAV_LINKS.CLIENTS}>Clients</NavLink></li>
-      <li><NavLink to={NAV_LINKS.PERSONNEL}>Personnel</NavLink></li>
-      <li><NavLink to={NAV_LINKS.FINANCES}>Finances</NavLink></li>
-      <li><NavLink to={NAV_LINKS.PRODUCTION}>Production</NavLink></li>
-      <li><NavLink to={NAV_LINKS.COMMUNICATION}>Communication</NavLink></li>
-      <li><NavLink to={NAV_LINKS.SELF_MANAGEMENT}>Self-management</NavLink></li>
-    </ul>
-  </>
+  return (
+    <>
+      <div>
+        <NavBarLink to={NAV_LINKS.MAIN} icon={<Home />} name="Main" />
+        <NavBarLink
+          to={NAV_LINKS.EMPLOYEES}
+          icon={<Users />}
+          name="Employees"
+        />
+        <NavBarLink
+          to={NAV_LINKS.CLIENTS}
+          icon={<Briefcase />}
+          name="Clients"
+        />
+        <NavBarLink
+          to={NAV_LINKS.PERSONNEL}
+          icon={<UserSquare />}
+          name="Personnel"
+        />
+        <NavBarLink
+          to={NAV_LINKS.FINANCES}
+          icon={<CircleDollarSign />}
+          name="Finances"
+        />
+        <NavBarLink
+          to={NAV_LINKS.PRODUCTION}
+          icon={<Factory />}
+          name="Production"
+        />
+        <NavBarLink
+          to={NAV_LINKS.COMMUNICATION}
+          icon={<MessagesSquare />}
+          name="Communication"
+        />
+        <NavBarLink
+          to={NAV_LINKS.SELF_MANAGEMENT}
+          icon={<PersonStanding />}
+          name="Self-management"
+        />
+      </div>
+    </>
+  )
 }
 
 export default NavBar
