@@ -20,13 +20,13 @@
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
     "tailwind-merge": "^1.13.2",
-    "tailwindcss": "^3.3.2",
     "tailwindcss-animate": "^1.0.6",
     "web-vitals": "^3.3.2",
     "zustand": "^4.3.8"
   },
   "scripts": {
     "start": "react-scripts start",
+    "tw": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -53,7 +53,12 @@
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
     "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.3.0",
     "sass": "^1.63.3",
+    "tailwindcss": "^3.3.2",
     "typescript": "^5.1.3"
   }
 }
