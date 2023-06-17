@@ -609,6 +609,10 @@ body {
   pointer-events: auto;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .fixed {
   position: fixed;
 }
@@ -630,6 +634,10 @@ body {
   bottom: 0px;
 }
 
+.bottom-14 {
+  bottom: 3.5rem;
+}
+
 .bottom-16 {
   bottom: 4rem;
 }
@@ -638,8 +646,12 @@ body {
   left: 0px;
 }
 
-.left-24 {
-  left: 6rem;
+.left-20 {
+  left: 5rem;
+}
+
+.left-\[4\.5rem\] {
+  left: 4.5rem;
 }
 
 .right-0 {
@@ -662,28 +674,24 @@ body {
   top: 0.5rem;
 }
 
-.left-\[4\.5rem\] {
-  left: 4.5rem;
+.top-6 {
+  top: 1.5rem;
+}
+
+.bottom-4 {
+  bottom: 1rem;
 }
 
 .z-\[100\] {
   z-index: 100;
 }
 
-.m-1 {
-  margin: 0.25rem;
-}
-
-.mt-1 {
-  margin-top: 0.25rem;
+.z-\[1\] {
+  z-index: 1;
 }
 
 .mb-1 {
   margin-bottom: 0.25rem;
-}
-
-.block {
-  display: block;
 }
 
 .inline-block {
@@ -702,8 +710,16 @@ body {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .aspect-square {
   aspect-ratio: 1 / 1;
+}
+
+.h-1\/2 {
+  height: 50%;
 }
 
 .h-16 {
@@ -722,32 +738,28 @@ body {
   height: 100%;
 }
 
-.h-\[75\%\] {
-  height: 75%;
-}
-
-.h-1\/2 {
-  height: 50%;
-}
-
 .max-h-screen {
   max-height: 100vh;
-}
-
-.w-24 {
-  width: 6rem;
 }
 
 .w-4 {
   width: 1rem;
 }
 
+.w-\[4\.5rem\] {
+  width: 4.5rem;
+}
+
+.w-auto {
+  width: auto;
+}
+
 .w-full {
   width: 100%;
 }
 
-.w-\[4\.5rem\] {
-  width: 4.5rem;
+.w-40 {
+  width: 10rem;
 }
 
 .shrink-0 {
@@ -788,6 +800,10 @@ body {
   border-radius: calc(var(--radius) - 2px);
 }
 
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -819,26 +835,17 @@ body {
   background-color: rgb(244 63 94 / var(--tw-bg-opacity));
 }
 
-.bg-teal-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(153 246 228 / var(--tw-bg-opacity));
-}
-
 .bg-transparent {
   background-color: transparent;
 }
 
-.bg-red-400 {
+.bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .p-1 {
   padding: 0.25rem;
-}
-
-.p-12 {
-  padding: 3rem;
 }
 
 .p-4 {
@@ -862,10 +869,6 @@ body {
   padding-right: 2rem;
 }
 
-.pt-4 {
-  padding-top: 1rem;
-}
-
 .text-center {
   text-align: center;
 }
@@ -883,12 +886,22 @@ body {
   font-weight: 600;
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .text-destructive-foreground {
   color: hsl(var(--destructive-foreground));
 }
 
 .text-foreground\/50 {
   color: hsl(var(--foreground) / 0.5);
+}
+
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 .opacity-0 {
@@ -932,6 +945,30 @@ body {
   transition-duration: 150ms;
 }
 
+.delay-1000 {
+  transition-delay: 1000ms;
+}
+
+.delay-0 {
+  transition-delay: 0s;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
+}
+
+.duration-200 {
+  transition-duration: 200ms;
+}
+
+.duration-700 {
+  transition-duration: 700ms;
+}
+
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
 @-webkit-keyframes enter {
   from {
     opacity: var(--tw-enter-opacity, 1);
@@ -962,6 +999,40 @@ body {
     -webkit-transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
             transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
   }
+}
+
+.duration-1000 {
+  -webkit-animation-duration: 1000ms;
+          animation-duration: 1000ms;
+}
+
+.duration-200 {
+  -webkit-animation-duration: 200ms;
+          animation-duration: 200ms;
+}
+
+.duration-700 {
+  -webkit-animation-duration: 700ms;
+          animation-duration: 700ms;
+}
+
+.delay-1000 {
+  -webkit-animation-delay: 1000ms;
+          animation-delay: 1000ms;
+}
+
+.delay-0 {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+.ease-in {
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+          animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.last\:mb-0:last-child {
+  margin-bottom: 0px;
 }
 
 .hover\:bg-secondary:hover {
@@ -1003,8 +1074,69 @@ body {
   opacity: 0.5;
 }
 
+.group:hover .group-hover\:visible {
+  visibility: visible;
+}
+
+.group:hover .group-hover\:inline-block {
+  display: inline-block;
+}
+
+.group:hover .group-hover\:text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;
+}
+
+.group:hover .group-hover\:shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.group:hover .group-hover\:shadow-2xl {
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.group:hover .group-hover\:shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.group:hover .group-hover\:shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.group:hover .group-hover\:delay-500 {
+  transition-delay: 500ms;
+}
+
+.group:hover .group-hover\:delay-1000 {
+  transition-delay: 1000ms;
+}
+
+.group:hover .group-hover\:duration-1000 {
+  transition-duration: 1000ms;
+  -webkit-animation-duration: 1000ms;
+          animation-duration: 1000ms;
+}
+
+.group:hover .group-hover\:delay-500 {
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+.group:hover .group-hover\:delay-1000 {
+  -webkit-animation-delay: 1000ms;
+          animation-delay: 1000ms;
 }
 
 .group.destructive .group-\[\.destructive\]\:border-destructive\/30 {
