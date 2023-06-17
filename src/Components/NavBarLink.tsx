@@ -19,7 +19,7 @@ const NavBarLink = ({ to, icon, name }: NavBarLinkProps) => {
         className={
           'invisible absolute bottom-4 left-20 z-[1] inline-block w-40 rounded-xl bg-white p-2 text-center ' +
           'text-black opacity-0 duration-200 delay-0 ' +
-          'group-hover:visible group-hover:opacity-100 group-hover:duration-1000 group-hover:delay-1000'
+          'group-hover:opacity-100 group-hover:duration-1000 group-hover:delay-1000 -smart:group-hover:visible'
         }
       >
         {name}
