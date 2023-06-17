@@ -14,7 +14,7 @@ import NavBarLink from './NavBarLink'
 const NavBar = () => {
   return (
     <>
-      <div>
+      <div className="p-1">
         <NavBarLink to={NAV_LINKS.MAIN} icon={<Home />} name="Main" />
         <NavBarLink
           to={NAV_LINKS.EMPLOYEES}
