@@ -8,9 +8,15 @@ const NavBarLink = ({ to, icon, name }: NavBarLinkProps) => {
     <div className="group relative transition-all ease-in">
       <NavLink
         to={to}
-        className={
-          'mb-1 flex aspect-square w-full items-center justify-center rounded-xl text-center text-gray-400 ' +
-          'duration-200 last:mb-0 group-hover:text-black group-hover:shadow-md'
+        className={({ isActive }) =>
+          'mb-1 flex aspect-square w-full items-center justify-center text-center ' +
+          'duration-700 last:mb-0 ' +
+          'group-active:bg-gray-400 ' +
+          `${
+            isActive
+              ? 'rounded-sm bg-gray-300 text-black -smart:group-hover:text-black -smart:group-hover:shadow-xl '
+              : 'rounded-xl bg-white text-gray-400 -smart:group-hover:text-gray-600 -smart:group-hover:shadow-md '
+          }`
         }
       >
         <div className="h-1/2">{Icon}</div>
