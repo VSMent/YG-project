@@ -6,20 +6,20 @@ const Layout = () => {
   const needFooter = true
   return (
     <>
-      <header className="absolute inset-x-0 top-0 h-16 bg-amber-800"></header>
+      <header className="absolute inset-x-0 top-0 h-16 bg-gray-300"></header>
       <aside className="absolute bottom-0 left-0 top-16 w-[4.5rem]">
         <NavBar />
       </aside>
       <main
         className={`absolute left-[4.5rem] right-0 top-16 ${
           needFooter ? 'bottom-16' : 'bottom-0'
-        } bg-indigo-500`}
+        } bg-amber-100`}
       >
         <Outlet />
         <Toaster />
       </main>
       {needFooter && (
-        <footer className="absolute bottom-0 left-[4.5rem] right-0 h-16 bg-rose-500"></footer>
+        <footer className="absolute bottom-0 left-[4.5rem] right-0 h-16 bg-blue-300"></footer>
       )}
     </>
   )
