@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react'
-import './App.css'
-import { loadFromLS } from './Utils/LocalStorage'
-import { LS_ITEM_USERS } from './data/constants'
-import { populateLSWithDummyData } from './Utils/DummyDataGenerator'
+import React from 'react'
 import { RouterProvider } from 'react-router'
+import './App.css'
+import { useDummyUserData } from './Utils/DummyDataGenerator'
 import Router from './Components/Router'
 
 // <header className="App-header">
@@ -23,11 +21,7 @@ import Router from './Components/Router'
 // </header>
 
 function App() {
-  useEffect(() => {
-    const users = loadFromLS(LS_ITEM_USERS)
-    !users && populateLSWithDummyData().catch(console.log)
-  }, [])
-
+  useDummyUserData()
   return <RouterProvider router={Router} />
 }
 

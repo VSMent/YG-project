@@ -1,20 +1,20 @@
 import hashPassword from './HashPassword'
 import User from '../data/User'
-import { LS_ITEM_USERS } from '../data/constants'
-import { saveToLS } from './LocalStorage'
+import { useUserStore } from './Stores'
+import { useEffect } from 'react'
 
-const generateDummyUsers = async () => {
-  const users: User[] = []
-  users.push(new User('user', await hashPassword('1234567')))
-  users.push(new User('admin', await hashPassword('123qwe')))
-  return users
+const useDummyUserData = () => {
+  const { users, addUser } = useUserStore()
+
+  useEffect(() => {
+    const add = async () => {
+      if (users.length == 0) {
+        addUser(new User('user', await hashPassword('1234567')))
+        addUser(new User('admin', await hashPassword('123qwe'), 'admin'))
+      }
+    }
+    add().catch(console.log)
+  })
 }
 
-const populateLSWithDummyData = async () => {
-  const users = await generateDummyUsers()
-  saveToLS(LS_ITEM_USERS, users)
-
-  return Promise.resolve()
-}
-
-export { populateLSWithDummyData }
+export { useDummyUserData }
