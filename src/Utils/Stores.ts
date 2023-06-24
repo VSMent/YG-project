@@ -22,21 +22,23 @@ export const useUserStore = create<UserStore>()(
         users: [],
         currentUser: null,
         str: 'test',
-        wipeUsers: () => set(() => ({ users: [] })),
+        wipeUsers: () => set(() => ({ users: [] }), false, 'wipeUsers'),
         addUser: (user) => {
           set(
             produce((state) => {
               state.users.push(user)
-            })
+            }),
+            false,
+            `addUser ${user.login}`
           )
         },
         findUserByLogin: (login) =>
           get().users.filter((user) => user.login === login)[0] ?? null,
         logInUser: (user) => {
-          set(() => ({ currentUser: user }))
+          set(() => ({ currentUser: user }), false, `logInUser ${user.login}`)
         },
         logOut: () => {
-          set(() => ({ currentUser: null }))
+          set(() => ({ currentUser: null }), false, 'logOut')
         },
       }),
       { name: 'users' }
