@@ -7,16 +7,16 @@ import React from 'react'
 
 const Router = createBrowserRouter([
   {
+    path: NAV_LINKS.LOGIN,
+    element: <LoginPage />,
+  },
+  {
     path: NAV_LINKS.MAIN,
     element: <Layout />,
     children: [
       {
         element: <MainPage />,
         index: true,
-      },
-      {
-        path: NAV_LINKS.LOGIN,
-        element: <LoginPage />,
       },
       {
         path: NAV_LINKS.EMPLOYEES,
