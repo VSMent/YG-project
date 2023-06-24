@@ -1,10 +1,16 @@
 import { Outlet } from 'react-router'
 import NavBar from './NavBar'
 import { Toaster } from './shadcn-ui/components/Toast/toaster'
+import { useUserStore } from '../Utils/Stores'
+import LoginPage from '../Pages/LoginPage'
 
 const Layout = () => {
   const needFooter = true
-  return (
+  const wipeUsers = useUserStore((state) => state.wipeUsers)
+  const logOut = useUserStore((state) => state.logOut)
+  const { currentUser } = useUserStore()
+
+  const basicLayout = (
     <>
       <header className="absolute inset-x-0 top-0 h-16 bg-gray-300"></header>
       <aside className="absolute bottom-0 left-0 top-16 w-[4.5rem]">
@@ -23,6 +29,7 @@ const Layout = () => {
       )}
     </>
   )
-}
 
+  return currentUser ? basicLayout : <LoginPage />
+}
 export default Layout
