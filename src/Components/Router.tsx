@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
+import React from 'react'
 import { NAV_LINKS } from '../data/constants'
-import Layout from './Layout'
 import MainPage from '../Pages/MainPage'
 import LoginPage from '../Pages/LoginPage'
-import React from 'react'
+import Layout from './Layout'
 
 const Router = createBrowserRouter([
   {
