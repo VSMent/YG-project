@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import React, { useEffect } from 'react'
 import LoginForm from '../Components/LoginForm'
 import hashPassword from '../Utils/HashPassword'
 import User from '../data/User'
@@ -29,7 +29,6 @@ const LoginPage = () => {
     }
   }
   const registerHandler = async (login: string, pass: string) => {
-    console.log('reg')
     const user = findUserByLogin(login)
     if (!user) {
       const hashedPass = await hashPassword(pass)

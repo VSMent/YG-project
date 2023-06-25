@@ -1,5 +1,5 @@
-import styles from '../styles/Login.module.sass'
 import { useRef } from 'react'
+import styles from '../styles/Login.module.sass'
 
 const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
   const loginInput = useRef<HTMLInputElement>(null)

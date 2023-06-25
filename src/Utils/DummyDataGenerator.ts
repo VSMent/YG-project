@@ -1,7 +1,7 @@
-import hashPassword from './HashPassword'
-import User from '../data/User'
-import { useUserStore } from './Stores'
 import { useEffect } from 'react'
+import User from '../data/User'
+import hashPassword from './HashPassword'
+import { useUserStore } from './Stores'
 
 const useDummyUserData = () => {
   const { users, addUser } = useUserStore()
