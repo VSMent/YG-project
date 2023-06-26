@@ -3,9 +3,9 @@ import React, { useEffect } from 'react'
 import LoginForm from '../Components/LoginForm'
 import hashPassword from '../Utils/HashPassword'
 import User from '../data/User'
-import { useToast } from '../Components/shadcn-ui/components/Toast/use-toast'
+import { useToast } from '../shadcn-ui/components/ui/use-toast'
+import { Toaster } from '../shadcn-ui/components/ui/toaster'
 import { useUserStore } from '../Utils/Stores'
-import { Toaster } from '../Components/shadcn-ui/components/Toast/toaster'
 
 const LoginPage = () => {
   const { addUser, findUserByLogin, logInUser, currentUser } = useUserStore()

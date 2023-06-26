@@ -1,36 +1,41 @@
 import { Outlet } from 'react-router'
 import { useUserStore } from '../Utils/Stores'
 import LoginPage from '../Pages/LoginPage'
+import { Toaster } from '../shadcn-ui/components/ui/toaster'
+import { UserNav } from '../shadcn-ui/components/examples/user-nav'
 import NavBar from './NavBar'
-import { Toaster } from './shadcn-ui/components/Toast/toaster'
 
 const Layout = () => {
-  const needFooter = true
   const wipeUsers = useUserStore((state) => state.wipeUsers)
   const logOut = useUserStore((state) => state.logOut)
   const { currentUser } = useUserStore()
-
   const basicLayout = (
-    <>
-      <header className="absolute inset-x-0 top-0 h-16 bg-gray-300">
-        <button onClick={wipeUsers}>wipeUsers</button>{' '}
-        <button onClick={logOut}>logOut</button>
-      </header>
-      <aside className="absolute bottom-0 left-0 top-16 w-[4.5rem]">
+    <div className="flex h-screen w-screen flex-row items-stretch justify-start ">
+      <aside className="w-16 border-r">
         <NavBar />
+        <button className="text-white hover:text-black" onClick={wipeUsers}>
+          wipeUsers
+        </button>
+        <br />
+        <button className="text-white hover:text-black" onClick={logOut}>
+          logOut
+        </button>
       </aside>
-      <main
-        className={`absolute left-[4.5rem] right-0 top-16 ${
-          needFooter ? 'bottom-16' : 'bottom-0'
-        } bg-amber-100`}
-      >
-        <Outlet />
-        <Toaster />
+      <main className="bg-re flex flex-auto flex-col justify-start ">
+        <header className="border-b">
+          <div className="flex h-16 items-center px-4">
+            {/*<MainNav className="mx-6" />*/}
+            <div className="ml-auto flex items-center space-x-4">
+              <UserNav />
+            </div>
+          </div>
+        </header>
+        <section className="flex-auto ">
+          <Outlet />
+          <Toaster />
+        </section>
       </main>
-      {needFooter && (
-        <footer className="absolute bottom-0 left-[4.5rem] right-0 h-16 bg-blue-300"></footer>
-      )}
-    </>
+    </div>
   )
 
   return currentUser ? basicLayout : <LoginPage />
