@@ -1,4 +1,4 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -71,9 +71,9 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       screens: {
-        'smart': { 'raw': '(pointer: coarse)' },
-        '-smart': { 'raw': '(pointer: fine)' },
-      }
+        smart: { raw: '(pointer: coarse)' },
+        '-smart': { raw: '(pointer: fine)' },
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
