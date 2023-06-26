@@ -1,6 +1,5 @@
 import React from 'react'
 import { RouterProvider } from 'react-router'
-import './App.css'
 import { useDummyUserData } from './Utils/DummyDataGenerator'
 import Router from './Components/Router'
 

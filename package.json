@@ -47,7 +47,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "tw": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "tw": "tailwindcss -i ./src/styles/input.css -o ./src/styles/output.css --watch",
     "share": "ngrok http 3000",
     "build": "react-scripts build",
     "predeploy": "yarn build",
