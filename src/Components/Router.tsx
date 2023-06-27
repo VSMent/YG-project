@@ -4,6 +4,7 @@ import { NAV_LINKS } from '../data/constants'
 import MainPage from '../Pages/MainPage'
 import LoginPage from '../Pages/LoginPage'
 import ErrorPage from '../Pages/ErrorPage'
+import CommunicationPage from '../Pages/CommunicationPage'
 import Layout from './Layout'
 
 const Router = createBrowserRouter(
@@ -51,7 +52,7 @@ const Router = createBrowserRouter(
         {
           path: NAV_LINKS.COMMUNICATION.to,
           handle: { name: NAV_LINKS.COMMUNICATION.name },
-          element: <>{NAV_LINKS.COMMUNICATION.name}</>,
+          element: <CommunicationPage />,
         },
         {
           path: NAV_LINKS.SELF_MANAGEMENT.to,
