@@ -19,6 +19,10 @@ module.exports = {
       },
     ],
     'import/order': 2,
+    '@typescript-eslint/no-inferrable-types': [
+      'error',
+      { ignoreParameters: true },
+    ],
   },
   settings: {},
 }
