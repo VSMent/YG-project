@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router'
+import { Outlet, useMatches } from 'react-router'
 import { useUserStore } from '../Utils/Stores'
 import LoginPage from '../Pages/LoginPage'
 import { Toaster } from '../shadcn-ui/components/ui/toaster'
@@ -9,6 +9,8 @@ const Layout = () => {
   const wipeUsers = useUserStore((state) => state.wipeUsers)
   const logOut = useUserStore((state) => state.logOut)
   const { currentUser } = useUserStore()
+  const match = (useMatches()[1]?.handle as { name: string }) ?? { name: '' }
+
   const basicLayout = (
     <div className="flex h-screen w-screen flex-row items-stretch justify-start ">
       <aside className="w-16 border-r">
@@ -25,6 +27,7 @@ const Layout = () => {
         <header className="border-b">
           <div className="flex h-16 items-center px-4">
             {/*<MainNav className="mx-6" />*/}
+            <h2 className="text-3xl font-bold tracking-tight">{match.name}</h2>
             <div className="ml-auto flex items-center space-x-4">
               <UserNav />
             </div>

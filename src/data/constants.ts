@@ -1,14 +1,13 @@
-const LS_ITEM_USERS = 'users'
 const NAV_LINKS = {
-  MAIN: '/',
-  LOGIN: '/login',
-  EMPLOYEES: '/employees',
-  CLIENTS: '/clients',
-  PERSONNEL: '/personnel',
-  FINANCES: '/finances',
-  PRODUCTION: '/production',
-  COMMUNICATION: '/communication',
-  SELF_MANAGEMENT: '/self-management',
+  MAIN: { to: '/', name: 'Dashboard' },
+  LOGIN: { to: '/login', name: 'Login' },
+  EMPLOYEES: { to: '/employees', name: 'Employees' },
+  CLIENTS: { to: '/clients', name: 'Clients' },
+  PERSONNEL: { to: '/personnel', name: 'Personnel' },
+  FINANCES: { to: '/finances', name: 'Finances' },
+  PRODUCTION: { to: '/production', name: 'Production' },
+  COMMUNICATION: { to: '/communication', name: 'Communication' },
+  SELF_MANAGEMENT: { to: '/self-management', name: 'Self management' },
 }
 
-export { LS_ITEM_USERS, NAV_LINKS }
+export { NAV_LINKS }

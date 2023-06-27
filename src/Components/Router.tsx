@@ -9,46 +9,54 @@ import Layout from './Layout'
 const Router = createBrowserRouter(
   [
     {
-      path: NAV_LINKS.LOGIN,
+      path: NAV_LINKS.LOGIN.to,
       element: <LoginPage />,
       errorElement: <ErrorPage />,
     },
     {
-      path: NAV_LINKS.MAIN,
+      path: NAV_LINKS.MAIN.to,
       element: <Layout />,
       errorElement: <ErrorPage />,
       children: [
         {
           element: <MainPage />,
+          handle: { name: NAV_LINKS.MAIN.name },
           index: true,
         },
         {
-          path: NAV_LINKS.EMPLOYEES,
-          element: <>{NAV_LINKS.EMPLOYEES}</>,
+          path: NAV_LINKS.EMPLOYEES.to,
+          handle: { name: NAV_LINKS.EMPLOYEES.name },
+          element: <>{NAV_LINKS.EMPLOYEES.name}</>,
         },
         {
-          path: NAV_LINKS.CLIENTS,
-          element: <>{NAV_LINKS.CLIENTS}</>,
+          path: NAV_LINKS.CLIENTS.to,
+          handle: { name: NAV_LINKS.CLIENTS.name },
+          element: <>{NAV_LINKS.CLIENTS.name}</>,
         },
         {
-          path: NAV_LINKS.PERSONNEL,
-          element: <>{NAV_LINKS.PERSONNEL}</>,
+          path: NAV_LINKS.PERSONNEL.to,
+          handle: { name: NAV_LINKS.PERSONNEL.name },
+          element: <>{NAV_LINKS.PERSONNEL.name}</>,
         },
         {
-          path: NAV_LINKS.FINANCES,
-          element: <>{NAV_LINKS.FINANCES}</>,
+          path: NAV_LINKS.FINANCES.to,
+          handle: { name: NAV_LINKS.FINANCES.name },
+          element: <>{NAV_LINKS.FINANCES.name}</>,
         },
         {
-          path: NAV_LINKS.PRODUCTION,
-          element: <>{NAV_LINKS.PRODUCTION}</>,
+          path: NAV_LINKS.PRODUCTION.to,
+          handle: { name: NAV_LINKS.PRODUCTION.name },
+          element: <>{NAV_LINKS.PRODUCTION.name}</>,
         },
         {
-          path: NAV_LINKS.COMMUNICATION,
-          element: <>{NAV_LINKS.COMMUNICATION}</>,
+          path: NAV_LINKS.COMMUNICATION.to,
+          handle: { name: NAV_LINKS.COMMUNICATION.name },
+          element: <>{NAV_LINKS.COMMUNICATION.name}</>,
         },
         {
-          path: NAV_LINKS.SELF_MANAGEMENT,
-          element: <>{NAV_LINKS.SELF_MANAGEMENT}</>,
+          path: NAV_LINKS.SELF_MANAGEMENT.to,
+          handle: { name: NAV_LINKS.SELF_MANAGEMENT.name },
+          element: <>{NAV_LINKS.SELF_MANAGEMENT.name}</>,
         },
       ],
     },
