@@ -37,130 +37,125 @@ import { UserNav } from '../shadcn-ui/components/examples/user-nav'
 export default function MainPage() {
   return (
     <>
-      <div className="hidden flex-col md:flex">
+      <div className="hidden h-full flex-col md:flex">
         <div className="flex-1 space-y-4 p-8 pt-6">
-          <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-            {/*<div className="flex items-center space-x-2">*/}
-            {/*  <Button>*/}
-            {/*    <Download className="mr-2 h-4 w-4" />*/}
-            {/*    Download*/}
-            {/*  </Button>*/}
-            {/*</div>*/}
-          </div>
+          {/*<div className="flex items-center justify-between space-y-2">*/}
+          {/*<div className="flex items-center space-x-2">*/}
+          {/*  <Button>*/}
+          {/*    <Download className="mr-2 h-4 w-4" />*/}
+          {/*    Download*/}
+          {/*  </Button>*/}
+          {/*</div>*/}
+          {/*</div>*/}
 
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
-                    Total Revenue
+                    Доходи компанії
                   </CardTitle>
                   <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">$45,231.89</div>
+                  <div className="text-2xl font-bold">45 231,89 ₴</div>
                   <p className="text-xs text-muted-foreground">
-                    +20.1% from last month
+                    +20,1% порівняно з минулим місяцем
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">
-                    Expenses
-                  </CardTitle>
+                  <CardTitle className="text-sm font-medium">Витрати</CardTitle>
                   <CreditCard className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">+2350</div>
                   <p className="text-xs text-muted-foreground">
-                    +180.1% from last month
+                    +180.1% порівняно з минулим місяцем
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
-                    Receivables
+                    Дебіторська заборгованість
                   </CardTitle>
                   <BadgePercent className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">+12,234</div>
                   <p className="text-xs text-muted-foreground">
-                    +19% from last month
+                    +19% порівняно з минулим місяцем
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
-                    Pulse of satisfaction (employees)
+                    Пульс задоволеності працівників
                   </CardTitle>
                   <Activity className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">+573</div>
                   <p className="text-xs text-muted-foreground">
-                    +201 since last hour
+                    +201 з минулої години
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">
-                    Purchases
-                  </CardTitle>
+                  <CardTitle className="text-sm font-medium">Покупки</CardTitle>
                   <Wallet className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">+573</div>
                   <p className="text-xs text-muted-foreground">
-                    +201 since last hour
+                    +201 з минулої години
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
-                    Number of orders
+                    Кількість замовлень
                   </CardTitle>
                   <ClipboardCheck className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">+573</div>
                   <p className="text-xs text-muted-foreground">
-                    +201 since last hour
+                    +201 з минулої години
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
-                    Number of clients
+                    Кількість клієнтів
                   </CardTitle>
                   <Hash className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">+573</div>
                   <p className="text-xs text-muted-foreground">
-                    +201 since last hour
+                    +201 з минулої години
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
-                    Pulse of satisfaction (customers)
+                    Пульс задоволеності клієнтів
                   </CardTitle>
                   <Activity className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">+573</div>
                   <p className="text-xs text-muted-foreground">
-                    +201 since last hour
+                    +201 з минулої години
                   </p>
                 </CardContent>
               </Card>
@@ -177,9 +172,9 @@ export default function MainPage() {
               </Card>
               <Card className="col-span-3">
                 <CardHeader>
-                  <CardTitle>Recent Sales</CardTitle>
+                  <CardTitle>Останні продажі</CardTitle>
                   <CardDescription>
-                    You made 265 sales this month.
+                    Цього місяця ви здійснили 265 продажів.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
