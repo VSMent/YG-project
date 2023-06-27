@@ -4,12 +4,12 @@
   "rsc": false,
   "tailwind": {
     "config": "tailwind.config.js",
-    "css": "../scripts/input.css",
+    "css": "../styles/input.css",
     "baseColor": "slate",
     "cssVariables": true
   },
   "aliases": {
-    "components": "./components",
-    "utils": "./lib/utils"
+    "components": "/src/shadcn-ui/components",
+    "utils": "/src/shadcn-ui/lib/utils"
   }
 }
