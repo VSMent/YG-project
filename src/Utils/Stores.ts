@@ -4,6 +4,7 @@ import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { produce } from 'immer'
 import User from '../data/User'
+import Chat from '../data/Chat'
 
 type UserStore = {
   users: User[]
@@ -22,7 +23,7 @@ export const useUserStore = create<UserStore>()(
         users: [],
         currentUser: null,
         str: 'test',
-        wipeUsers: () => set(() => ({ users: [] }), false, 'wipeUsers'),
+        wipeUsers: () => set({ users: [] }, false, 'wipeUsers'),
         addUser: (user) => {
           set(
             produce((state) => {
@@ -47,6 +48,32 @@ export const useUserStore = create<UserStore>()(
   )
 )
 
+type ChatStore = {
+  chats: Chat[]
+  addChat: (chat: Chat) => void
+  wipeChats: () => void
+}
+export const useChatStore = create<ChatStore>()(
+  devtools(
+    persist(
+      (set) => ({
+        chats: [],
+        wipeChats: () => set({ chats: [] }, false, 'wipeChats'),
+        addChat: (chat) => {
+          set(
+            produce((state) => {
+              state.chats.push(chat)
+            }),
+            false,
+            `addChat ${chat.id}`
+          )
+        },
+      }),
+      { name: 'chats' }
+    ),
+    { name: 'chats' }
+  )
+)
 //<editor-fold desc="some tests">
 // type bearsType = {
 //   // bears: number
