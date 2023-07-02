@@ -1,13 +1,13 @@
 import { Outlet, useMatches } from 'react-router'
-import { useUserStore } from '../Utils/Stores'
+import { useChatStore, useUserStore } from '../Utils/Stores'
 import LoginPage from '../Pages/LoginPage'
 import { Toaster } from '../shadcn-ui/components/ui/toaster'
 import { UserNav } from '../shadcn-ui/components/examples/user-nav'
 import NavBar from './NavBar'
 
 const Layout = () => {
-  const wipeUsers = useUserStore((state) => state.wipeUsers)
-  const logOut = useUserStore((state) => state.logOut)
+  const { wipeUsers, logOut } = useUserStore()
+  const { wipeChats } = useChatStore()
   const { currentUser } = useUserStore()
   const match = (useMatches()[1]?.handle as { name: string }) ?? { name: '' }
 
@@ -21,6 +21,10 @@ const Layout = () => {
         <br />
         <button className="text-white hover:text-black" onClick={logOut}>
           logOut
+        </button>
+        <br />
+        <button className="text-white hover:text-black" onClick={wipeChats}>
+          wipeChats
         </button>
       </aside>
       <main className="bg-re flex flex-auto flex-col justify-start ">
