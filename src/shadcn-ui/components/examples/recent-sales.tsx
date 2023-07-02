@@ -35,7 +35,10 @@ export function RecentSales() {
   return (
     <div className="space-y-8">
       {sales.map((sale) => (
-        <div className="flex items-center">
+        <div
+          key={`${sale.initials} ${sale.amount}`}
+          className="flex items-center"
+        >
           <Avatar className="h-9 w-9">
             {/*<AvatarImage src="/avatars/01.png" alt="Avatar" />*/}
             <AvatarFallback>{sale.initials}</AvatarFallback>
