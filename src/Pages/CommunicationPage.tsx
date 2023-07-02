@@ -1,4 +1,4 @@
-import { History } from 'lucide-react'
+import { History, Send } from 'lucide-react'
 
 import { Button } from '../shadcn-ui/components/ui/button'
 import {
@@ -8,12 +8,7 @@ import {
 } from '../shadcn-ui/components/ui/hover-card'
 import { Label } from '../shadcn-ui/components/ui/label'
 import { Separator } from '../shadcn-ui/components/ui/separator'
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '../shadcn-ui/components/ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../Components/Tabs'
 import { Textarea } from '../shadcn-ui/components/ui/textarea'
 
 import { CodeViewer } from '../shadcn-ui/components/examples/code-viewer'
@@ -28,44 +23,74 @@ import { TemperatureSelector } from '../shadcn-ui/components/examples/temperatur
 import { TopPSelector } from '../shadcn-ui/components/examples/top-p-selector'
 import { models, types } from '../shadcn-ui/data/models'
 import { presets } from '../shadcn-ui/data/presets'
+import { useChatStore } from '../Utils/Stores'
+import { ScrollArea } from '../shadcn-ui/components/ui/scroll-area'
+import ChatMessage from '../Components/ChatMessage'
 // import './styles.css'
 // import Image from 'next/image'
 
 export default function CommunicationPage() {
+  const { chats } = useChatStore()
+
   return (
     <>
       <div className="hidden h-full flex-col md:flex">
         <div className="h-full p-8 pt-6">
-          <div className="container grid h-full items-stretch gap-6 md:grid-cols-[200px_1fr]">
-            <div className="min-h-[400px] rounded-md border bg-muted lg:min-h-[700px]" />
-            <div className="md:order-1">
-              <div className="mt-0 border-0 p-0">
-                <div className="flex flex-col space-y-4">
-                  <div className="grid h-full gap-6 lg:grid-cols-2">
-                    <div className="flex flex-col space-y-4">
-                      <div className="flex flex-1 flex-col space-y-2">
-                        <Textarea
-                          id="input"
-                          placeholder="We is going to the market."
-                          className="flex-1 lg:min-h-[580px]"
-                        />
-                      </div>
-                      <div className="flex flex-col space-y-2">
-                        <Label htmlFor="instructions">Instructions</Label>
-                        <Textarea
-                          id="instructions"
-                          placeholder="Fix the grammar."
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Button>Submit</Button>
-                  </div>
-                </div>
+          <Tabs
+            defaultValue="account"
+            className="container grid h-full items-stretch gap-6 md:grid-cols-[200px_1fr]"
+            orientation="vertical"
+          >
+            {/*   p-1 text-muted-foreground*/}
+            <TabsList
+              className={
+                'flex min-h-[400px] w-full flex-col items-stretch justify-start rounded-md border ' +
+                'bg-muted text-muted-foreground lg:min-h-[700px]'
+              }
+            >
+              <TabsTrigger value="account">Account</TabsTrigger>
+              <TabsTrigger value="password">Password </TabsTrigger>
+            </TabsList>
+            {/*<TabsContent value="account">*/}
+            {/*  <ScrollArea>*/}
+            {/*    asd*/}
+            {/*  </ScrollArea>*/}
+            {/*</TabsContent>*/}
+            {/*<TabsContent value="password">*/}
+            {/*  Change your password here.*/}
+            {/*</TabsContent>*/}
+            {/*  */}
+            {/*'flex min-h-[400px] w-full flex-col items-stretch justify-start rounded-md border ' +*/}
+            {/*'bg-muted text-muted-foreground lg:min-h-[700px]'*/}
+            <div className="flex flex-col gap-2 ">
+              <div className="flex h-full flex-col gap-3 rounded-md border p-4 text-base">
+                {[chats[0]].map((c) =>
+                  c.messages.map((m) => (
+                    <ChatMessage
+                      key={`${c.id} ${m.time}`}
+                      className={
+                        m.author == c.participants[0]
+                          ? 'self-end'
+                          : 'self-start'
+                      }
+                      author={m.author}
+                      text={m.body}
+                      time={m.time}
+                    />
+                  ))
+                )}
+              </div>
+              <div className="flex flex-row items-center ">
+                <Textarea
+                  className="resize-none"
+                  placeholder="Напишіть повідомлення тут.."
+                />
+                <Button className="mx-2" size="icon">
+                  <Send />
+                </Button>
               </div>
             </div>
-          </div>
+          </Tabs>
         </div>
       </div>
     </>
