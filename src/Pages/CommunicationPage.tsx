@@ -52,54 +52,50 @@ export default function CommunicationPage() {
   }, [chats])
 
   return (
-    <>
-      <div className="hidden h-full flex-col md:flex">
-        <div className="container grid h-full items-stretch gap-6 p-8 pt-6 md:grid-cols-[200px_1fr]">
-          <div
-            className={
-              'flex min-h-[400px] w-full flex-col items-stretch justify-start rounded-md border ' +
-              'space-y-2 bg-muted p-2 text-muted-foreground lg:min-h-[700px] '
-            }
+    <div className="container grid h-full items-stretch gap-6 p-8 pt-6 md:grid-cols-[200px_1fr]">
+      <div
+        className={
+          'flex min-h-[400px] w-full flex-col items-stretch justify-start rounded-md border ' +
+          'space-y-2 bg-muted p-2 text-muted-foreground lg:min-h-[700px] '
+        }
+      >
+        {chats.map((c) => (
+          <ChatListButton
+            key={c.id}
+            renderActive={activeChat.id == c.id}
+            onClick={() => changeActiveChat(c.id)}
+            name={c.participants[1]}
+            lastMessage={c.messages[c.messages.length - 1].body ?? ''}
+          />
+        ))}
+      </div>
+      <div className="flex flex-col gap-4 ">
+        <ChatMessagesList activeChat={activeChat} />
+        <div className="flex flex-row items-center ">
+          <Textarea
+            className="resize-none"
+            placeholder="Напишіть повідомлення тут.."
+            ref={messageTextarea}
+            onKeyDown={(e) => {
+              if (e.key == 'Enter' && !e.shiftKey) {
+                addMessageToChat()
+                clearInput()
+              }
+            }}
+          />
+          <Button
+            className="mx-4"
+            size="icon"
+            variant="outline"
+            onClick={() => {
+              addMessageToChat()
+              clearInput()
+            }}
           >
-            {chats.map((c) => (
-              <ChatListButton
-                key={c.id}
-                renderActive={activeChat.id == c.id}
-                onClick={() => changeActiveChat(c.id)}
-                name={c.participants[1]}
-                lastMessage={c.messages[c.messages.length - 1].body ?? ''}
-              />
-            ))}
-          </div>
-          <div className="flex flex-col gap-4 ">
-            <ChatMessagesList activeChat={activeChat} />
-            <div className="flex flex-row items-center ">
-              <Textarea
-                className="resize-none"
-                placeholder="Напишіть повідомлення тут.."
-                ref={messageTextarea}
-                onKeyDown={(e) => {
-                  if (e.key == 'Enter' && !e.shiftKey) {
-                    addMessageToChat()
-                    clearInput()
-                  }
-                }}
-              />
-              <Button
-                className="mx-4"
-                size="icon"
-                variant="outline"
-                onClick={() => {
-                  addMessageToChat()
-                  clearInput()
-                }}
-              >
-                <Send />
-              </Button>
-            </div>
-          </div>
+            <Send />
+          </Button>
         </div>
       </div>
-    </>
+    </div>
   )
 }
