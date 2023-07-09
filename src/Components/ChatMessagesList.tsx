@@ -7,7 +7,7 @@ const ChatMessagesList = ({ activeChat }: { activeChat: Chat }) => {
   const lastRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    lastRef.current?.scrollIntoView({ behavior: 'smooth' })
+    lastRef.current?.scrollIntoView({ behavior: 'instant' })
   }, [activeChat])
 
   const chatMessages = activeChat.messages.map((m, i, arr) => (
