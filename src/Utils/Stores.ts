@@ -2,10 +2,11 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
-import { produce } from 'immer'
+import { produce, setAutoFreeze } from 'immer'
 import User from '../data/User'
-import Chat from '../data/Chat'
+import Chat, { Message } from '../data/Chat'
 
+// setAutoFreeze(false)
 type UserStore = {
   users: User[]
   currentUser: User | null
@@ -51,12 +52,14 @@ export const useUserStore = create<UserStore>()(
 type ChatStore = {
   chats: Chat[]
   addChat: (chat: Chat) => void
+  addChatMessage: (chatId: number, author: string, message: string) => void
   wipeChats: () => void
+  findChatById: (chatId: number) => Chat | null
 }
 export const useChatStore = create<ChatStore>()(
   devtools(
     persist(
-      (set) => ({
+      (set, get) => ({
         chats: [],
         wipeChats: () => set({ chats: [] }, false, 'wipeChats'),
         addChat: (chat) => {
@@ -68,6 +71,19 @@ export const useChatStore = create<ChatStore>()(
             `addChat ${chat.id}`
           )
         },
+        addChatMessage: (chatId, author, message) => {
+          const chatIndex = get().chats.findIndex((ch) => ch.id == chatId)
+          if (chatIndex < 0) return
+          set(
+            produce((state) => {
+              state.chats[chatIndex].messages.push(new Message(author, message))
+            }),
+            true,
+            `add message to chat ${chatId}`
+          )
+        },
+        findChatById: (chatId) =>
+          get().chats.filter((chat) => chat.id == chatId)[0] ?? null,
       }),
       { name: 'chats' }
     ),

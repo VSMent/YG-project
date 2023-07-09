@@ -1,96 +1,103 @@
-import { History, Send } from 'lucide-react'
+import { Send } from 'lucide-react'
+
+import { useEffect, useRef, useState } from 'react'
 
 import { Button } from '../shadcn-ui/components/ui/button'
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from '../shadcn-ui/components/ui/hover-card'
-import { Label } from '../shadcn-ui/components/ui/label'
-import { Separator } from '../shadcn-ui/components/ui/separator'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../Components/Tabs'
 import { Textarea } from '../shadcn-ui/components/ui/textarea'
-
-import { CodeViewer } from '../shadcn-ui/components/examples/code-viewer'
-import { Icons } from '../shadcn-ui/components/examples/icons'
-import { MaxLengthSelector } from '../shadcn-ui/components/examples/maxlength-selector'
-import { ModelSelector } from '../shadcn-ui/components/examples/model-selector'
-import { PresetActions } from '../shadcn-ui/components/examples/preset-actions'
-import { PresetSave } from '../shadcn-ui/components/examples/preset-save'
-import { PresetSelector } from '../shadcn-ui/components/examples/preset-selector'
-import { PresetShare } from '../shadcn-ui/components/examples/preset-share'
-import { TemperatureSelector } from '../shadcn-ui/components/examples/temperature-selector'
-import { TopPSelector } from '../shadcn-ui/components/examples/top-p-selector'
-import { models, types } from '../shadcn-ui/data/models'
-import { presets } from '../shadcn-ui/data/presets'
 import { useChatStore } from '../Utils/Stores'
-import { ScrollArea } from '../shadcn-ui/components/ui/scroll-area'
-import ChatMessage from '../Components/ChatMessage'
-// import './styles.css'
-// import Image from 'next/image'
+import { useToast } from '../shadcn-ui/components/ui/use-toast'
+import ChatListButton from '../Components/ChatListButton'
+import ChatMessagesList from '../Components/ChatMessagesList'
 
 export default function CommunicationPage() {
-  const { chats } = useChatStore()
+  const { chats, findChatById, addChatMessage } = useChatStore()
+  const [activeChat, setActiveChat] = useState(chats[0])
+  const { toast } = useToast()
+  const messageTextarea = useRef<HTMLTextAreaElement>(null)
+  const changeActiveChat = (chatId: number) => {
+    const newChat = findChatById(chatId)
+    if (newChat) {
+      setActiveChat(newChat)
+    } else {
+      toast({
+        title: 'Chat was not found',
+        variant: 'destructive',
+        description: 'Please contact support',
+      })
+    }
+  }
+  const addMessageToChat = () => {
+    const newMessage = messageTextarea.current?.value
+    if (newMessage) {
+      addChatMessage(activeChat.id, activeChat.participants[0], newMessage)
+    } else {
+      toast({
+        title: 'Message was empty',
+        variant: 'destructive',
+        description: 'Please contact support',
+      })
+    }
+  }
+  const clearInput = () => {
+    if (messageTextarea.current) messageTextarea.current.value = ''
+  }
+
+  useEffect(() => {
+    const unsub = useChatStore.subscribe(() => {
+      changeActiveChat(activeChat.id)
+    })
+    return () => {
+      unsub()
+    }
+  }, [chats])
 
   return (
     <>
       <div className="hidden h-full flex-col md:flex">
-        <div className="h-full p-8 pt-6">
-          <Tabs
-            defaultValue="account"
-            className="container grid h-full items-stretch gap-6 md:grid-cols-[200px_1fr]"
-            orientation="vertical"
+        <div className="container grid h-full items-stretch gap-6 p-8 pt-6 md:grid-cols-[200px_1fr]">
+          <div
+            className={
+              'flex min-h-[400px] w-full flex-col items-stretch justify-start rounded-md border ' +
+              'space-y-2 bg-muted p-2 text-muted-foreground lg:min-h-[700px] '
+            }
           >
-            {/*   p-1 text-muted-foreground*/}
-            <TabsList
-              className={
-                'flex min-h-[400px] w-full flex-col items-stretch justify-start rounded-md border ' +
-                'bg-muted text-muted-foreground lg:min-h-[700px]'
-              }
-            >
-              <TabsTrigger value="account">Account</TabsTrigger>
-              <TabsTrigger value="password">Password </TabsTrigger>
-            </TabsList>
-            {/*<TabsContent value="account">*/}
-            {/*  <ScrollArea>*/}
-            {/*    asd*/}
-            {/*  </ScrollArea>*/}
-            {/*</TabsContent>*/}
-            {/*<TabsContent value="password">*/}
-            {/*  Change your password here.*/}
-            {/*</TabsContent>*/}
-            {/*  */}
-            {/*'flex min-h-[400px] w-full flex-col items-stretch justify-start rounded-md border ' +*/}
-            {/*'bg-muted text-muted-foreground lg:min-h-[700px]'*/}
-            <div className="flex flex-col gap-2 ">
-              <div className="flex h-full flex-col gap-3 rounded-md border p-4 text-base">
-                {[chats[0]].map((c) =>
-                  c.messages.map((m) => (
-                    <ChatMessage
-                      key={`${c.id} ${m.time}`}
-                      className={
-                        m.author == c.participants[0]
-                          ? 'self-end'
-                          : 'self-start'
-                      }
-                      author={m.author}
-                      text={m.body}
-                      time={m.time}
-                    />
-                  ))
-                )}
-              </div>
-              <div className="flex flex-row items-center ">
-                <Textarea
-                  className="resize-none"
-                  placeholder="Напишіть повідомлення тут.."
-                />
-                <Button className="mx-2" size="icon">
-                  <Send />
-                </Button>
-              </div>
+            {chats.map((c) => (
+              <ChatListButton
+                key={c.id}
+                renderActive={activeChat.id == c.id}
+                onClick={() => changeActiveChat(c.id)}
+                name={c.participants[1]}
+                lastMessage={c.messages[c.messages.length - 1].body ?? ''}
+              />
+            ))}
+          </div>
+          <div className="flex flex-col gap-4 ">
+            <ChatMessagesList activeChat={activeChat} />
+            <div className="flex flex-row items-center ">
+              <Textarea
+                className="resize-none"
+                placeholder="Напишіть повідомлення тут.."
+                ref={messageTextarea}
+                onKeyDown={(e) => {
+                  if (e.key == 'Enter' && !e.shiftKey) {
+                    addMessageToChat()
+                    clearInput()
+                  }
+                }}
+              />
+              <Button
+                className="mx-4"
+                size="icon"
+                variant="outline"
+                onClick={() => {
+                  addMessageToChat()
+                  clearInput()
+                }}
+              >
+                <Send />
+              </Button>
             </div>
-          </Tabs>
+          </div>
         </div>
       </div>
     </>

@@ -1,17 +1,20 @@
+import { forwardRef } from 'react'
+
 type MessageProps = {
   author: string
   text: string
   time: string
   className: string
 }
-const ChatMessage = ({ author, text, time, className }: MessageProps) => {
-  return (
+const ChatMessage = forwardRef<HTMLDivElement, MessageProps>(
+  ({ author, text, time, className }: MessageProps, ref) => (
     <div
       className={
         'relative min-w-[20%] max-w-[47%] rounded-md border bg-white p-4' +
         ' ' +
         className
       }
+      ref={ref}
     >
       <span className="absolute -top-2.5 left-3 bg-white px-2 text-right text-sm font-light text-muted-foreground">
         {author}
@@ -22,6 +25,6 @@ const ChatMessage = ({ author, text, time, className }: MessageProps) => {
       </span>
     </div>
   )
-}
+)
 
 export default ChatMessage

@@ -35,3 +35,4 @@ class Chat {
 }
 
 export default Chat
+export { Message }
