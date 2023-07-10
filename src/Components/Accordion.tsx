@@ -14,7 +14,7 @@ const AccordionItem = React.forwardRef<
     ref={ref}
     className={cn(
       'border-b',
-      'data-[state=open]:flex-auto data-[state=closed]:flex-grow-0',
+      'transition-[flex-grow] duration-200 data-[state=open]:flex-auto',
       className
     )}
     {...props}
