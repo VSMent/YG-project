@@ -15,6 +15,7 @@ const AccordionItem = React.forwardRef<
     className={cn(
       'border-b',
       'transition-[flex-grow] duration-200 data-[state=open]:flex-auto',
+      // 'data-[state=open]:h-full',
       className
     )}
     {...props}
@@ -54,7 +55,9 @@ const AccordionContent = React.forwardRef<
     )}
     {...props}
   >
-    <div className="pb-4 pt-0">{children}</div>
+    {/*<div className="pb-4 pt-0">*/}
+    {children}
+    {/*</div>*/}
   </AccordionPrimitive.Content>
 ))
 AccordionContent.displayName = AccordionPrimitive.Content.displayName
