@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { ScrollArea } from '../shadcn-ui/components/ui/scroll-area'
 import Chat from '../data/Chat'
+import { ScrollArea } from './ScrollArea'
 import ChatMessage from './ChatMessage'
 
 const ChatMessagesList = ({ activeChat }: { activeChat: Chat }) => {
