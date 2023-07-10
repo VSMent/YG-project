@@ -5,6 +5,7 @@ import MainPage from '../Pages/MainPage'
 import LoginPage from '../Pages/LoginPage'
 import ErrorPage from '../Pages/ErrorPage'
 import CommunicationPage from '../Pages/CommunicationPage'
+import EmployeesPage from '../Pages/EmployeesPage'
 import Layout from './Layout'
 
 const Router = createBrowserRouter(
@@ -27,7 +28,7 @@ const Router = createBrowserRouter(
         {
           path: NAV_LINKS.EMPLOYEES.to,
           handle: { name: NAV_LINKS.EMPLOYEES.name },
-          element: <>{NAV_LINKS.EMPLOYEES.name}</>,
+          element: <EmployeesPage />,
         },
         {
           path: NAV_LINKS.CLIENTS.to,
