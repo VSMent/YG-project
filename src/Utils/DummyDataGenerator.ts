@@ -38,7 +38,20 @@ const peopleData = {
     'Лисенко',
     'Баран',
   ],
-  usernames: ['intega', 'parin', 'ystn', 'vtli', 'omian'],
+  usernames: [
+    'intega',
+    'parin',
+    'ystn',
+    'vtli',
+    'omian',
+    'user652',
+    'raun',
+    'tsent',
+    'vgamis',
+    'amerdif',
+    'planti',
+    'espo',
+  ],
 }
 const useDummyUserData = () => {
   const { users, addUser } = useUserStore()
@@ -46,38 +59,66 @@ const useDummyUserData = () => {
   useEffect(() => {
     const add = async () => {
       if (users.length == 0) {
-        addUser(
-          new User(
-            'admin@gmail.com',
-            await hashPassword('admin'),
-            'Максим',
-            'Стасюк',
-            'admin'
-          )
-        )
-        addUser(
-          new User(
-            'user@gmail.com',
-            await hashPassword('user'),
-            'Олена',
-            'Павленко'
-          )
-        )
+        addUser({
+          login: 'admin@gmail.com',
+          pass: await hashPassword('admin'),
+          firstname: 'Максим',
+          lastname: 'Стасюк',
+          role: 'admin',
+        })
+        addUser({
+          login: 'marketing@gmail.com',
+          pass: await hashPassword('marketing'),
+          firstname: 'Денис',
+          lastname: 'Валентинін',
+          role: 'employee',
+          department: 'marketing',
+        })
+        addUser({
+          login: 'personnel@gmail.com',
+          pass: await hashPassword('personnel'),
+          firstname: 'Андрій',
+          lastname: 'Рубайло',
+          role: 'employee',
+          department: 'personnel',
+        })
+        addUser({
+          login: 'user@gmail.com',
+          pass: await hashPassword('user'),
+          firstname: 'Олена',
+          lastname: 'Павленко',
+          role: 'user',
+        })
         for (const username of peopleData.usernames) {
-          addUser(
-            new User(
-              `${username}${
-                Math.random() > 0.5 ? '@gmail.com' : '@outlook.com'
-              }`,
-              await hashPassword(username),
+          const common = {
+            login: `${username}${
+              Math.random() > 0.5 ? '@gmail.com' : '@outlook.com'
+            }`,
+            pass: await hashPassword(username),
+            firstname:
               peopleData.firstnames[
                 Math.floor(Math.random() * peopleData.firstnames.length)
               ],
+            lastname:
               peopleData.lastnames[
                 Math.floor(Math.random() * peopleData.lastnames.length)
-              ]
-            )
-          )
+              ],
+          }
+          let user: User
+          if (Math.random() > 0.8) {
+            user = {
+              ...common,
+              role: 'employee',
+              department: Math.random() > 0.5 ? 'marketing' : 'personnel',
+            }
+          } else {
+            user = {
+              ...common,
+              role: 'user',
+            }
+          }
+
+          addUser(user)
         }
       }
     }
