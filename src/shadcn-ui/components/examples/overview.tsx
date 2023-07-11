@@ -69,6 +69,7 @@ export function Overview() {
           fontSize={12}
           tickLine={false}
           axisLine={false}
+          width={65}
           tickFormatter={(value: number) =>
             `${value.toLocaleString('uk-ua')} ₴`
           }
