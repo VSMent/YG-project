@@ -116,7 +116,16 @@ export const useChatStore = create<ChatStore>()(
         findChatById: (chatId) =>
           get().chats.filter((chat) => chat.id == chatId)[0] ?? null,
       }),
-      { name: 'chats' }
+      {
+        name: 'chats',
+        onRehydrateStorage: () => (state) => {
+          state?.chats.forEach((chat) =>
+            chat.messages.forEach(
+              (message) => (message.time = new Date(message.time))
+            )
+          )
+        },
+      }
     ),
     { name: 'chats' }
   )
