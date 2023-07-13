@@ -3,8 +3,8 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { produce, setAutoFreeze } from 'immer'
-import User from '../data/User'
-import Chat, { Message } from '../data/Chat'
+import { User } from '../data/User'
+import { Chat, Message } from '../data/Chat'
 
 // setAutoFreeze(false)
 type UserStore = {
@@ -12,7 +12,8 @@ type UserStore = {
   currentUser: User | null
   str: string
   wipeUsers: () => void
-  addUser: (user: User) => void
+  addUserObj: (user: User) => void
+  registerUser: (login: string, pass: string) => void
   findUserByLogin: (login: string) => User | null
   logInUser: (user: User) => void
   logOut: () => void
@@ -25,13 +26,29 @@ export const useUserStore = create<UserStore>()(
         currentUser: null,
         str: 'test',
         wipeUsers: () => set({ users: [] }, false, 'wipeUsers'),
-        addUser: (user) => {
+        addUserObj: (user) => {
           set(
             produce((state) => {
               state.users.push(user)
             }),
             false,
-            `addUser ${user.login}`
+            `addUser as Object ${user.login}`
+          )
+        },
+        registerUser: (login, pass) => {
+          const user: User = {
+            login: login,
+            pass: pass,
+            firstname: '',
+            lastname: '',
+            role: 'user',
+          }
+          set(
+            produce((state) => {
+              state.users.push(user)
+            }),
+            false,
+            `registerUser ${user.login}`
           )
         },
         findUserByLogin: (login) =>
@@ -51,8 +68,14 @@ export const useUserStore = create<UserStore>()(
 
 type ChatStore = {
   chats: Chat[]
-  addChat: (chat: Chat) => void
-  addChatMessage: (chatId: number, author: string, message: string) => void
+  lastChatId: number
+  addChat: (chat: Chat) => Chat
+  addChatMessage: (
+    chatId: number,
+    author: string,
+    body: string,
+    time?: Date
+  ) => void
   wipeChats: () => void
   findChatById: (chatId: number) => Chat | null
 }
@@ -61,22 +84,30 @@ export const useChatStore = create<ChatStore>()(
     persist(
       (set, get) => ({
         chats: [],
+        lastChatId: 0,
         wipeChats: () => set({ chats: [] }, false, 'wipeChats'),
         addChat: (chat) => {
+          const newChat: Chat = { ...chat, id: ++get().lastChatId }
           set(
             produce((state) => {
-              state.chats.push(chat)
+              state.chats.push(newChat)
             }),
             false,
             `addChat ${chat.id}`
           )
+          return chat
         },
-        addChatMessage: (chatId, author, message) => {
+        addChatMessage: (chatId, author, body, time) => {
           const chatIndex = get().chats.findIndex((ch) => ch.id == chatId)
           if (chatIndex < 0) return
+          const message: Message = {
+            authorEmail: author,
+            body: body,
+            time: time ?? new Date(),
+          }
           set(
             produce((state) => {
-              state.chats[chatIndex].messages.push(new Message(author, message))
+              state.chats[chatIndex].messages.push(message)
             }),
             true,
             `add message to chat ${chatId}`
