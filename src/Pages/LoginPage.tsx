@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router'
 import React, { useEffect } from 'react'
 import LoginForm from '../Components/LoginForm'
 import hashPassword from '../Utils/HashPassword'
-import User from '../data/User'
 import { useToast } from '../shadcn-ui/components/ui/use-toast'
 import { Toaster } from '../shadcn-ui/components/ui/toaster'
 import { useUserStore } from '../Utils/Stores'
 
 const LoginPage = () => {
-  const { addUser, findUserByLogin, logInUser, currentUser } = useUserStore()
+  const { registerUser, findUserByLogin, logInUser, currentUser } =
+    useUserStore()
   const navigate = useNavigate()
   const { toast } = useToast()
   const loginHandler = async (login: string, pass: string) => {
@@ -32,8 +32,7 @@ const LoginPage = () => {
     const user = findUserByLogin(login)
     if (!user) {
       const hashedPass = await hashPassword(pass)
-      const newUser = new User(login, hashedPass)
-      addUser(newUser)
+      registerUser(login, hashedPass)
       toast({
         title: 'Registered successfully',
         description: 'Proceed to login',

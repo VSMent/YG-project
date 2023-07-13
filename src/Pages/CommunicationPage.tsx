@@ -29,7 +29,11 @@ export default function CommunicationPage() {
   const addMessageToChat = () => {
     const newMessage = messageTextarea.current?.value
     if (newMessage) {
-      addChatMessage(activeChat.id, activeChat.participants[0], newMessage)
+      addChatMessage(
+        activeChat.id,
+        activeChat.participants.employee.email,
+        newMessage
+      )
     } else {
       toast({
         title: 'Message was empty',
@@ -64,7 +68,7 @@ export default function CommunicationPage() {
             key={c.id}
             renderActive={activeChat.id == c.id}
             onClick={() => changeActiveChat(c.id)}
-            name={c.participants[1]}
+            name={c.participants.user.name}
             lastMessage={c.messages[c.messages.length - 1].body ?? ''}
           />
         ))}
