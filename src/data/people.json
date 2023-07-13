@@ -1,0 +1,81 @@
+{
+  "predefined": [
+    {
+      "login": "admin@gmail.com",
+      "pass": "admin",
+      "firstname": "Максим",
+      "lastname": "Стасюк",
+      "role": "admin"
+    },
+    {
+      "login": "marketing@gmail.com",
+      "pass": "marketing",
+      "firstname": "Денис",
+      "lastname": "Валентинін",
+      "role": "employee",
+      "department": "marketing"
+    },
+    {
+      "login": "personnel@gmail.com",
+      "pass": "personnel",
+      "firstname": "Андрій",
+      "lastname": "Рубайло",
+      "role": "employee",
+      "department": "personnel"
+    },
+    {
+      "login": "user@gmail.com",
+      "pass": "user",
+      "firstname": "Олена",
+      "lastname": "Павленко",
+      "role": "user"
+    }
+  ],
+  "firstnames": [
+    "Віктор",
+    "Борис",
+    "Єлизавета",
+    "Федір",
+    "Ярослав",
+    "Тамара",
+    "Андрій",
+    "Тарас",
+    "Віталій",
+    "Володимир",
+    "Олена",
+    "Ірина",
+    "Оксана",
+    "Ілля",
+    "Лілія",
+    "Максим"
+  ],
+  "lastnames": [
+    "Ткачук",
+    "Шевчук",
+    "Кравченко",
+    "Василенко",
+    "Когут",
+    "Стасюк",
+    "Василишин",
+    "Павленко",
+    "Іванов",
+    "Олійник",
+    "Ковальчук",
+    "Лисенко",
+    "Баран"
+  ],
+  "usernames": [
+    "intega",
+    "parin",
+    "ystn",
+    "vtli",
+    "omian",
+    "user652",
+    "raun",
+    "tsent",
+    "vgamis",
+    "amerdif",
+    "planti",
+    "espo"
+  ]
+}
