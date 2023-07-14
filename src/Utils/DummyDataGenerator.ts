@@ -10,10 +10,11 @@ import { useChatStore, useTaskStore, useUserStore } from './Stores'
 
 const useDummyUserData = () => {
   const { users, addUserObj } = useUserStore()
-  const generatedUsers: User[] = []
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+      const generatedUsers: User[] = []
+
       if (users.length == 0) {
         const add = async () => {
           await Promise.all([
@@ -86,11 +87,12 @@ const useDummyUserData = () => {
 const useDummyChatData = () => {
   const { users } = useUserStore()
   const { chats, addChat } = useChatStore()
-  const kindOfRealUsers = users.filter((u) => u.role == 'user')
-  const kindOfRealEmployees = users.filter((u) => u.role == 'employee')
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+      const kindOfRealUsers = users.filter((u) => u.role == 'user')
+      const kindOfRealEmployees = users.filter((u) => u.role == 'employee')
+
       if (chats.length == 0) {
         chatsData.forEach((chatDatum) => {
           const employee =
@@ -129,11 +131,12 @@ const useDummyChatData = () => {
 const useDummyTaskData = () => {
   const { tasks, addTask } = useTaskStore()
   const { findUsersByDepartment } = useUserStore()
-  const marketingEmployees = findUsersByDepartment('marketing')
-  const personnelEmployees = findUsersByDepartment('personnel')
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+      const marketingEmployees = findUsersByDepartment('marketing')
+      const personnelEmployees = findUsersByDepartment('personnel')
+
       if (tasks.length == 0) {
         tasksData.forEach((taskDatum) => {
           const employees =
