@@ -3,8 +3,9 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { produce, setAutoFreeze } from 'immer'
-import { User } from '../data/User'
+import { Department, User } from '../data/User'
 import { Chat, Message } from '../data/Chat'
+import { Task, Status } from '../data/Task'
 
 // setAutoFreeze(false)
 type UserStore = {
@@ -15,6 +16,7 @@ type UserStore = {
   addUserObj: (user: User) => void
   registerUser: (login: string, pass: string) => void
   findUserByLogin: (login: string) => User | null
+  findUsersByDepartment: (department: Department) => User[]
   logInUser: (user: User) => void
   logOut: () => void
 }
@@ -53,6 +55,10 @@ export const useUserStore = create<UserStore>()(
         },
         findUserByLogin: (login) =>
           get().users.filter((user) => user.login === login)[0] ?? null,
+        findUsersByDepartment: (department) =>
+          get().users.filter(
+            (user) => user.role == 'employee' && user.department == department
+          ),
         logInUser: (user) => {
           set(() => ({ currentUser: user }), false, `logInUser ${user.login}`)
         },
@@ -130,6 +136,57 @@ export const useChatStore = create<ChatStore>()(
     { name: 'chats' }
   )
 )
+
+type TaskStore = {
+  tasks: Task[]
+  lastChatId: number
+  addTask: (
+    title: string,
+    body: string,
+    assigneeEmail: string,
+    status: Status
+  ) => void
+  findTasksForEmployee: (employeeEmail: string) => Task[]
+  sortTasksByStatuses: (tasks: Task[]) => { [key: string]: Task[] }
+}
+
+export const useTaskStore = create<TaskStore>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        tasks: [],
+        lastChatId: 0,
+        addTask: (title, body, assigneeEmail, status = 'New') => {
+          const newTask: Task = {
+            id: ++get().lastChatId,
+            title,
+            body,
+            assigneeEmail,
+            status,
+          }
+          set(
+            produce((state) => {
+              state.tasks.push(newTask)
+            })
+          )
+        },
+        findTasksForEmployee: (employeeEmail) =>
+          get().tasks.filter((task) => task.assigneeEmail == employeeEmail),
+        sortTasksByStatuses: (tasks) => {
+          const sortedTasks: { [key: string]: Task[] } = {}
+          tasks.forEach((task) => {
+            sortedTasks[task.status] = []
+            sortedTasks[task.status].push(task)
+          })
+          return sortedTasks
+        },
+      }),
+      { name: 'tasks' }
+    ),
+    { name: 'tasks' }
+  )
+)
+
 //<editor-fold desc="some tests">
 // type bearsType = {
 //   // bears: number

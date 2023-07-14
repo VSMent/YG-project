@@ -3,8 +3,10 @@ import { User, Department } from '../data/User'
 import { Chat } from '../data/Chat'
 import chatsData from '../data/chats.json'
 import peopleData from '../data/people.json'
+import tasksData from '../data/tasks.json'
+import { Status } from '../data/Task'
 import hashPassword from './HashPassword'
-import { useChatStore, useUserStore } from './Stores'
+import { useChatStore, useTaskStore, useUserStore } from './Stores'
 
 const useDummyUserData = () => {
   const { users, addUserObj } = useUserStore()
@@ -114,4 +116,31 @@ const useDummyChatData = () => {
   // })
 }
 
-export { useDummyUserData, useDummyChatData }
+const useDummyTaskData = () => {
+  const { tasks, addTask } = useTaskStore()
+  const { users } = useUserStore()
+  const marketingEmployees = users.filter(
+    (u) => u.role == 'employee' && u.department == 'marketing'
+  )
+  const personnelEmployees = users.filter(
+    (u) => u.role == 'employee' && u.department == 'personnel'
+  )
+  if (tasks.length == 0) {
+    console.log('tasks no effect')
+    tasksData.forEach((taskDatum) => {
+      const employees =
+        taskDatum.department == 'marketing'
+          ? marketingEmployees
+          : personnelEmployees
+      const statuses: Status[] = ['New', 'InProgress', 'InCheck', 'Done']
+      addTask(
+        taskDatum.title,
+        taskDatum.body,
+        employees[Math.floor(Math.random() * employees.length)].login,
+        statuses[Math.floor(Math.random() * statuses.length)]
+      )
+    })
+  }
+}
+
+export { useDummyUserData, useDummyChatData, useDummyTaskData }

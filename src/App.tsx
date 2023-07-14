@@ -1,6 +1,10 @@
 import React from 'react'
 import { RouterProvider } from 'react-router'
-import { useDummyChatData, useDummyUserData } from './Utils/DummyDataGenerator'
+import {
+  useDummyChatData,
+  useDummyTaskData,
+  useDummyUserData,
+} from './Utils/DummyDataGenerator'
 import Router from './Components/Router'
 
 // <header className="App-header">
@@ -22,6 +26,7 @@ import Router from './Components/Router'
 function App() {
   useDummyUserData()
   useDummyChatData()
+  useDummyTaskData()
   return <RouterProvider router={Router} />
 }
 
