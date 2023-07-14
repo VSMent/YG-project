@@ -26,8 +26,35 @@ import {
   CommandList,
 } from '../shadcn-ui/components/ui/command'
 import { ScrollArea } from '../Components/ScrollArea'
+import { useTaskStore, useUserStore } from '../Utils/Stores'
+import { Task } from '../data/Task'
 
 const EmployeesPage = () => {
+  const { users, findUsersByDepartment } = useUserStore()
+  const { findTasksForEmployee, sortTasksByStatuses } = useTaskStore()
+
+  const personnelUsers = findUsersByDepartment('personnel')
+  const marketingUsers = findUsersByDepartment('marketing')
+  const userTasks: {
+    personnel: { [key: string]: { [key: string]: Task[] } }
+    marketing: { [key: string]: { [key: string]: Task[] } }
+  } = {
+    personnel: {},
+    marketing: {},
+  }
+
+  personnelUsers.forEach((user) => {
+    userTasks.personnel[user.login] = sortTasksByStatuses(
+      findTasksForEmployee(user.login)
+    )
+  })
+  marketingUsers.forEach((user) => {
+    userTasks.marketing[user.login] = sortTasksByStatuses(
+      findTasksForEmployee(user.login)
+    )
+  })
+
+  console.log(userTasks)
   return (
     <>
       <div className="container h-full p-8 pt-6">
@@ -53,35 +80,51 @@ const EmployeesPage = () => {
                   '[&>[data-radix-scroll-area-viewport]>div]:gap-3 '
                 }
               >
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((el) => (
-                  <Card className={'bg-muted'} key={el}>
+                {personnelUsers.map((user) => (
+                  <Card className={'bg-muted'} key={user.login}>
                     <CardHeader>
                       <CardTitle>
                         <div className="flex items-center justify-between space-x-4">
                           <div className="flex items-center space-x-4">
                             <div>
                               <p className="text-sm font-medium leading-none">
-                                Name{el} Surname{el}
+                                {`${user.firstname} ${user.lastname}`}
                               </p>
                             </div>
                           </div>
                         </div>
                       </CardTitle>
-                      <CardDescription>name{el}@gmail.com</CardDescription>
+                      <CardDescription>{user.login}</CardDescription>
                     </CardHeader>
                     <CardContent className="flex w-max flex-row gap-2">
                       <div className="flex flex-col">
-                        <div className={'flex justify-between gap-2'}>
-                          <p>Запланованих завдань:</p> <p>{el * 10}</p>
+                        <div className={'flex justify-between gap-2 '}>
+                          <p>Запланованих завдань:</p>{' '}
+                          <p>
+                            {userTasks.personnel[user.login]['New']?.length ??
+                              0}
+                          </p>
                         </div>
                         <div className={'flex justify-between gap-2'}>
-                          <p>Виконаних завдань:</p> <p>{el * 30}</p>
+                          <p>Завдань у прогресі:</p>{' '}
+                          <p>
+                            {userTasks.personnel[user.login]['InProgress']
+                              ?.length ?? 0}
+                          </p>
                         </div>
                         <div className={'flex justify-between gap-2'}>
-                          <p>Завдань у прогресі:</p> <p>{el * 50}</p>
+                          <p>Завдань на перевірці</p>{' '}
+                          <p>
+                            {userTasks.personnel[user.login]['InCheck']
+                              ?.length ?? 0}
+                          </p>
                         </div>
                         <div className={'flex justify-between gap-2'}>
-                          <p>Виконаних завдань:</p> <p>{el * 70}</p>
+                          <p>Виконаних завдань:</p>{' '}
+                          <p>
+                            {userTasks.personnel[user.login]['Done']?.length ??
+                              0}
+                          </p>
                         </div>
                       </div>
                     </CardContent>
@@ -100,21 +143,27 @@ const EmployeesPage = () => {
                   '[&>[data-radix-scroll-area-viewport]>div]:gap-3 '
                 }
               >
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((el, i) => (
-                  <>
-                    <div
-                      className={
-                        'flex flex-col items-start px-4 py-2 ' +
-                        (i % 2 == 0 ? 'bg-white ' : 'bg-white/40 ')
-                      }
-                    >
-                      <p>Завдання {el} щось там зробити</p>
-                      <p className="text-sm text-muted-foreground">
-                        Короткий опис завдання
-                      </p>
-                    </div>
-                  </>
-                ))}
+                {Object.entries(userTasks.personnel).map(
+                  ([user, sortedTasks]) =>
+                    Object.entries(sortedTasks).map(([status, tasks]) =>
+                      tasks.map((task) => (
+                        <>
+                          <div
+                            className={
+                              'flex flex-col items-start px-4 py-2 odd:bg-white even:bg-white/40'
+                            }
+                            key={task.id}
+                          >
+                            <p>{task.title} </p>
+                            <span className={'self-end '}>{task.status}</span>
+                            <p className="text-sm text-muted-foreground">
+                              {task.body.substring(0, 180)}
+                            </p>
+                          </div>
+                        </>
+                      ))
+                    )
+                )}
               </ScrollArea>
             </AccordionContent>
           </AccordionItem>
