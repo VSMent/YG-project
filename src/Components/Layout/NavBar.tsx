@@ -8,7 +8,7 @@ import {
   Users,
   UserSquare,
 } from 'lucide-react'
-import { NAV_LINKS } from '../data/constants'
+import { NAV_LINKS } from '../../data/constants'
 import NavBarLink from './NavBarLink'
 
 const NavBar = () => {

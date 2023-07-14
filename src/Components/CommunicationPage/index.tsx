@@ -2,12 +2,12 @@ import { Send } from 'lucide-react'
 
 import { useEffect, useRef, useState } from 'react'
 
-import { Button } from '../shadcn-ui/components/ui/button'
-import { Textarea } from '../shadcn-ui/components/ui/textarea'
-import { useChatStore } from '../Utils/Stores'
-import { useToast } from '../shadcn-ui/components/ui/use-toast'
-import ChatListButton from '../Components/ChatListButton'
-import ChatMessagesList from '../Components/ChatMessagesList'
+import { Button } from '../../shadcn-ui/components/ui/button'
+import { Textarea } from '../../shadcn-ui/components/ui/textarea'
+import { useChatStore } from '../../Utils/Stores'
+import { useToast } from '../../shadcn-ui/components/ui/use-toast'
+import ChatListButton from './ChatListButton'
+import ChatMessagesList from './ChatMessagesList'
 
 export default function CommunicationPage() {
   const { chats, findChatById, addChatMessage } = useChatStore()

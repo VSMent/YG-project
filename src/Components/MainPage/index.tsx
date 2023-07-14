@@ -11,7 +11,7 @@ import {
   Wallet,
 } from 'lucide-react'
 
-import { Button } from '../shadcn-ui/components/ui/button'
+import { Button } from '../../shadcn-ui/components/ui/button'
 import {
   Card,
   CardContent,
@@ -19,20 +19,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '../shadcn-ui/components/ui/card'
+} from '../../shadcn-ui/components/ui/card'
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '../shadcn-ui/components/ui/tabs'
+} from '../../shadcn-ui/components/ui/tabs'
 // import { CalendarDateRangePicker } from '@/app/examples/dashboard/components/date-range-picker'
-import { MainNav } from '../shadcn-ui/components/examples/main-nav'
-import { Overview } from '../shadcn-ui/components/examples/overview'
-import { RecentSales } from '../shadcn-ui/components/examples/recent-sales'
+import { MainNav } from '../../shadcn-ui/components/examples/main-nav'
+import { Overview } from '../../shadcn-ui/components/examples/overview'
+import { RecentSales } from '../../shadcn-ui/components/examples/recent-sales'
 // import { Search } from '@/app/examples/dashboard/components/search'
 // import TeamSwitcher from '@/app/examples/dashboard/components/team-switcher'
-import { UserNav } from '../shadcn-ui/components/examples/user-nav'
+import { UserNav } from '../../shadcn-ui/components/examples/user-nav'
 
 export default function MainPage() {
   return (

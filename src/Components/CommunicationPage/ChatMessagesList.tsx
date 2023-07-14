@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { Chat } from '../data/Chat'
-import { ScrollArea } from './ScrollArea'
+import { Chat } from '../../data/Chat'
+import { ScrollArea } from '../ScrollArea'
 import ChatMessage from './ChatMessage'
 
 const convertToLocalTime = (date: Date) =>

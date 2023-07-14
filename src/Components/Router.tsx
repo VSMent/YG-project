@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom'
 import React from 'react'
 import { NAV_LINKS } from '../data/constants'
-import MainPage from '../Pages/MainPage'
-import LoginPage from '../Pages/LoginPage'
-import ErrorPage from '../Pages/ErrorPage'
-import CommunicationPage from '../Pages/CommunicationPage'
-import EmployeesPage from '../Pages/EmployeesPage'
+import LoginPage from './LoginPage'
+import ErrorPage from './ErrorPage'
 import Layout from './Layout'
+import MainPage from './MainPage'
+import EmployeesPage from './EmployeesPage'
+import CommunicationPage from './CommunicationPage'
 
 const Router = createBrowserRouter(
   [

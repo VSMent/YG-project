@@ -4,30 +4,30 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '../Components/Accordion'
+} from '../Accordion'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '../shadcn-ui/components/ui/card'
+} from '../../shadcn-ui/components/ui/card'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '../shadcn-ui/components/ui/popover'
-import { Button } from '../shadcn-ui/components/ui/button'
+} from '../../shadcn-ui/components/ui/popover'
+import { Button } from '../../shadcn-ui/components/ui/button'
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandList,
-} from '../shadcn-ui/components/ui/command'
-import { ScrollArea } from '../Components/ScrollArea'
-import { useTaskStore, useUserStore } from '../Utils/Stores'
-import { Task } from '../data/Task'
+} from '../../shadcn-ui/components/ui/command'
+import { ScrollArea } from '../ScrollArea'
+import { useTaskStore, useUserStore } from '../../Utils/Stores'
+import { Task } from '../../data/Task'
 
 const EmployeesPage = () => {
   const { users, findUsersByDepartment } = useUserStore()
