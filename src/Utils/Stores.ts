@@ -5,7 +5,7 @@ import { immer } from 'zustand/middleware/immer'
 import { produce, setAutoFreeze } from 'immer'
 import { Department, User } from '../data/User'
 import { Chat, Message } from '../data/Chat'
-import { Task, Status } from '../data/Task'
+import { Task, Status, PossibleStatuses } from '../data/Task'
 
 // setAutoFreeze(false)
 type UserStore = {
@@ -156,7 +156,7 @@ export const useTaskStore = create<TaskStore>()(
       (set, get) => ({
         tasks: [],
         lastChatId: 0,
-        addTask: (title, body, assigneeEmail, status = 'New') => {
+        addTask: (title, body, assigneeEmail, status = PossibleStatuses[0]) => {
           const newTask: Task = {
             id: ++get().lastChatId,
             title,

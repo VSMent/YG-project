@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { User, Department } from '../data/User'
+import { User, Department, PossibleDepartments } from '../data/User'
 import { Chat } from '../data/Chat'
 import chatsData from '../data/chats.json'
 import peopleData from '../data/people.json'
 import tasksData from '../data/tasks.json'
-import { Status } from '../data/Task'
+import { PossibleStatuses } from '../data/Task'
 import hashPassword from './HashPassword'
 import { useChatStore, useTaskStore, useUserStore } from './Stores'
 
@@ -29,7 +29,10 @@ const useDummyUserData = () => {
               ...common,
               role: userData.role,
             })
-          else if (userData.role == 'employee')
+          else if (
+            userData.role == 'employee' &&
+            PossibleDepartments.includes(<Department>userData.department)
+          )
             generatedUsers.push({
               ...common,
               role: userData.role,
@@ -57,7 +60,10 @@ const useDummyUserData = () => {
             generatedUsers.push({
               ...common,
               role: 'employee',
-              department: Math.random() > 0.5 ? 'marketing' : 'personnel',
+              department:
+                PossibleDepartments[
+                  Math.floor(Math.random() * PossibleDepartments.length)
+                ],
             })
           else
             generatedUsers.push({
@@ -132,12 +138,11 @@ const useDummyTaskData = () => {
         taskDatum.department == 'marketing'
           ? marketingEmployees
           : personnelEmployees
-      const statuses: Status[] = ['New', 'InProgress', 'InCheck', 'Done']
       addTask(
         taskDatum.title,
         taskDatum.body,
         employees[Math.floor(Math.random() * employees.length)].login,
-        statuses[Math.floor(Math.random() * statuses.length)]
+        PossibleStatuses[Math.floor(Math.random() * PossibleStatuses.length)]
       )
     })
   }

@@ -1,5 +1,8 @@
-type Role = 'admin' | 'user' | 'employee'
-type Department = 'personnel' | 'marketing'
+const PossibleRoles = ['admin', 'user', 'employee'] as const
+const PossibleDepartments = ['personnel', 'marketing'] as const
+
+type Role = (typeof PossibleRoles)[number]
+type Department = (typeof PossibleDepartments)[number]
 
 type User = {
   firstname: string
@@ -15,3 +18,4 @@ type User = {
 )
 
 export type { User, Role, Department }
+export { PossibleRoles, PossibleDepartments }
