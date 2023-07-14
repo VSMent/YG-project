@@ -11,7 +11,6 @@ import { Task, Status, PossibleStatuses } from '../data/Task'
 type UserStore = {
   users: User[]
   currentUser: User | null
-  str: string
   wipeUsers: () => void
   addUserObj: (user: User) => void
   registerUser: (login: string, pass: string) => void
@@ -26,7 +25,6 @@ export const useUserStore = create<UserStore>()(
       (set, get) => ({
         users: [],
         currentUser: null,
-        str: 'test',
         wipeUsers: () => set({ users: [] }, false, 'wipeUsers'),
         addUserObj: (user) => {
           set(
@@ -140,6 +138,9 @@ export const useChatStore = create<ChatStore>()(
 type TaskStore = {
   tasks: Task[]
   lastChatId: number
+  activeSelection: {
+    [key: string]: { email: string; status: Status }
+  }
   addTask: (
     title: string,
     body: string,
@@ -148,6 +149,11 @@ type TaskStore = {
   ) => void
   findTasksForEmployee: (employeeEmail: string) => Task[]
   sortTasksByStatuses: (tasks: Task[]) => { [key: string]: Task[] }
+  setActiveTaskSelection: (
+    department: Department,
+    email: string,
+    status: Status
+  ) => void
 }
 
 export const useTaskStore = create<TaskStore>()(
@@ -156,6 +162,7 @@ export const useTaskStore = create<TaskStore>()(
       (set, get) => ({
         tasks: [],
         lastChatId: 0,
+        activeSelection: {},
         addTask: (title, body, assigneeEmail, status = PossibleStatuses[0]) => {
           const newTask: Task = {
             id: ++get().lastChatId,
@@ -167,7 +174,9 @@ export const useTaskStore = create<TaskStore>()(
           set(
             produce((state) => {
               state.tasks.push(newTask)
-            })
+            }),
+            false,
+            `add task ${title}`
           )
         },
         findTasksForEmployee: (employeeEmail) =>
@@ -179,6 +188,16 @@ export const useTaskStore = create<TaskStore>()(
             sortedTasks[task.status].push(task)
           })
           return sortedTasks
+        },
+        setActiveTaskSelection: (department, email, status) => {
+          console.log(get().activeSelection, department, email, status)
+          set(
+            produce((state) => {
+              state.activeSelection[department] = { email, status }
+            }),
+            false,
+            `set active task to ${department}, ${email}, ${status}`
+          )
         },
       }),
       { name: 'tasks' }
