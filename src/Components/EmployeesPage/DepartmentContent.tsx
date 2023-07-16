@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { ScrollArea } from '../ScrollArea'
-import { useTaskStore, useUserStore } from '../../Utils/Stores'
-import { Task } from '../../data/Task'
-import { Department } from '../../data/User'
+import HorizontalCardScroll from '../HorizontalCardScroll'
+import VerticalListScroll from '../VerticalListScroll'
 import EmployeeCard from './EmployeeCard'
 import TaskRow from './TaskRow'
+import { useTaskStore, useUserStore } from '@utils/Stores'
+import { Department } from '@type/User'
+import { Task } from '@type/Task'
 
 type DepartmentBlockProps = {
   department: Department
@@ -40,15 +41,7 @@ const DepartmentContent = ({ department }: DepartmentBlockProps) => {
   return (
     <>
       {' '}
-      <ScrollArea
-        orientation="horizontal"
-        className={
-          'rounded-md border  p-4 text-base ' +
-          // fix radix viewport display
-          '[&>[data-radix-scroll-area-viewport]>div]:!flex ' +
-          '[&>[data-radix-scroll-area-viewport]>div]:gap-3 '
-        }
-      >
+      <HorizontalCardScroll>
         {users.map((user) => (
           <EmployeeCard
             key={user.login}
@@ -58,20 +51,12 @@ const DepartmentContent = ({ department }: DepartmentBlockProps) => {
             clickHandler={updateActive}
           />
         ))}
-      </ScrollArea>
-      <ScrollArea
-        className={
-          'flex-[1_0_1px] rounded-md border bg-muted p-4 text-base ' +
-          // fix radix viewport display
-          '[&>[data-radix-scroll-area-viewport]>div]:!flex ' +
-          '[&>[data-radix-scroll-area-viewport]>div]:flex-col ' +
-          '[&>[data-radix-scroll-area-viewport]>div]:gap-3 '
-        }
-      >
+      </HorizontalCardScroll>
+      <VerticalListScroll>
         {activeTasks.map((task) => (
           <TaskRow key={task.id} task={task} />
         ))}
-      </ScrollArea>
+      </VerticalListScroll>
     </>
   )
 }
