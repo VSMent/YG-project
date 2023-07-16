@@ -31,7 +31,7 @@ const DepartmentContent = ({ department }: DepartmentBlockProps) => {
     const timeout = setTimeout(() => {
       if (Object.hasOwn(activeSelection, department)) {
         const deptTasks = activeSelection[department]
-        setActiveTasks(userTasks[deptTasks.email][deptTasks.status])
+        setActiveTasks(userTasks[deptTasks.email][deptTasks.status] ?? [])
       }
     }, 0)
 
