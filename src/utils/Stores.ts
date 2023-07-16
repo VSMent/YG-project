@@ -6,6 +6,11 @@ import { produce, setAutoFreeze } from 'immer'
 import { Department, User } from '@type/User'
 import { Chat, Message } from '@type/Chat'
 import { Task, Status, PossibleStatuses } from '@type/Task'
+import {
+  RecruitingEvent,
+  RecruitingStatus,
+  PossibleStatuses as PossibleRecruitingStatuses,
+} from '@type/RecrutingEvent'
 
 // setAutoFreeze(false)
 type UserStore = {
@@ -190,7 +195,6 @@ export const useTaskStore = create<TaskStore>()(
           return sortedTasks
         },
         setActiveTaskSelection: (department, email, status) => {
-          console.log(get().activeSelection, department, email, status)
           set(
             produce((state) => {
               state.activeSelection[department] = { email, status }
@@ -203,6 +207,66 @@ export const useTaskStore = create<TaskStore>()(
       { name: 'tasks' }
     ),
     { name: 'tasks' }
+  )
+)
+
+type RecruitingEventStore = {
+  events: RecruitingEvent[]
+  lastEventId: number
+  activeEventsSelection: RecruitingEvent[]
+  addEvent: (
+    title: string,
+    description: string,
+    status: RecruitingStatus
+  ) => void
+  findEventsByStatus: (status: RecruitingStatus) => RecruitingEvent[]
+  setActiveEventsSelection: (status: RecruitingStatus) => void
+}
+
+export const useRecruitingEventStore = create<RecruitingEventStore>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        events: [],
+        lastEventId: 0,
+        activeEventsSelection: [],
+        addEvent: (
+          title,
+          description,
+          status = PossibleRecruitingStatuses[0]
+        ) => {
+          const newEvent: RecruitingEvent = {
+            id: ++get().lastEventId,
+            title,
+            description,
+            status,
+          }
+          set(
+            produce((state) => {
+              state.events.push(newEvent)
+            }),
+            false,
+            `add event ${title}`
+          )
+        },
+        findEventsByStatus: (status) =>
+          get().events.filter((event) => event.status === status),
+        setActiveEventsSelection: (status) => {
+          const activeEvents = get().events.filter(
+            (event) => event.status === status
+          )
+          set(
+            produce((state) => {
+              state.activeEventsSelection = activeEvents
+            }),
+            false,
+            `set active recruiting events to ${status} (${activeEvents.length})`
+          )
+        },
+      }),
+      { name: 'recruiting-events' }
+    ),
+    { name: 'recruiting-events' }
   )
 )
 
