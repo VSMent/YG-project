@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router'
 import Router from './Components/Router'
 import {
   useDummyChatData,
+  useDummyRecruitingEventData,
   useDummyTaskData,
   useDummyUserData,
 } from '@utils/DummyDataGenerator'
@@ -27,6 +28,8 @@ function App() {
   useDummyUserData()
   useDummyChatData()
   useDummyTaskData()
+  useDummyRecruitingEventData()
+
   return <RouterProvider router={Router} />
 }
 

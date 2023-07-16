@@ -2,11 +2,18 @@ import { useEffect } from 'react'
 import chatsData from '../data/chats.json'
 import peopleData from '../data/people.json'
 import tasksData from '../data/tasks.json'
+import recruitingEventData from '../data/recruitingEvents.json'
 import hashPassword from './HashPassword'
-import { useChatStore, useTaskStore, useUserStore } from './Stores'
+import {
+  useChatStore,
+  useRecruitingEventStore,
+  useTaskStore,
+  useUserStore,
+} from './Stores'
 import { PossibleStatuses } from '@type/Task'
 import { Chat } from '@type/Chat'
 import { User, Department, PossibleDepartments } from '@type/User'
+import { RecruitingStatus } from '@type/RecrutingEvent'
 
 const useDummyUserData = () => {
   const { users, addUserObj } = useUserStore()
@@ -127,7 +134,6 @@ const useDummyChatData = () => {
     }
   })
 }
-
 const useDummyTaskData = () => {
   const { tasks, addTask } = useTaskStore()
   const { findUsersByDepartment } = useUserStore()
@@ -159,4 +165,29 @@ const useDummyTaskData = () => {
   }, [])
 }
 
-export { useDummyUserData, useDummyChatData, useDummyTaskData }
+const useDummyRecruitingEventData = () => {
+  const { events, addEvent } = useRecruitingEventStore()
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (events.length === 0) {
+        recruitingEventData.forEach((eventData) => {
+          addEvent(
+            eventData.title,
+            eventData.description,
+            <RecruitingStatus>eventData.status
+          )
+        })
+      }
+    }, 0)
+
+    return () => clearTimeout(timeout)
+  }, [])
+}
+
+export {
+  useDummyUserData,
+  useDummyChatData,
+  useDummyTaskData,
+  useDummyRecruitingEventData,
+}
