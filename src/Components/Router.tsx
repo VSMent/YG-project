@@ -7,6 +7,7 @@ import Layout from './Layout'
 import MainPage from './MainPage'
 import EmployeesPage from './EmployeesPage'
 import CommunicationPage from './CommunicationPage'
+import PersonnelPage from './PersonnelPage'
 
 const Router = createBrowserRouter(
   [
@@ -38,7 +39,7 @@ const Router = createBrowserRouter(
         {
           path: NAV_LINKS.PERSONNEL.to,
           handle: { name: NAV_LINKS.PERSONNEL.name },
-          element: <>{NAV_LINKS.PERSONNEL.name}</>,
+          element: <PersonnelPage />,
         },
         {
           path: NAV_LINKS.FINANCES.to,
