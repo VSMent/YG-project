@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router'
 import React, { useEffect } from 'react'
-import hashPassword from '../../Utils/HashPassword'
-import { useToast } from '../../shadcn-ui/components/ui/use-toast'
-import { Toaster } from '../../shadcn-ui/components/ui/toaster'
-import { useUserStore } from '../../Utils/Stores'
 import LoginForm from './LoginForm'
+import hashPassword from '@utils/HashPassword'
+import { useUserStore } from '@utils/Stores'
+import { useToast } from '@sh/components/ui/use-toast'
+import { Toaster } from '@sh/components/ui/toaster'
 
 const LoginPage = () => {
   const { registerUser, findUserByLogin, logInUser, currentUser } =

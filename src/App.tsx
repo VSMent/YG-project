@@ -1,11 +1,11 @@
 import React from 'react'
 import { RouterProvider } from 'react-router'
+import Router from './Components/Router'
 import {
   useDummyChatData,
   useDummyTaskData,
   useDummyUserData,
-} from './Utils/DummyDataGenerator'
-import Router from './Components/Router'
+} from '@utils/DummyDataGenerator'
 
 // <header className="App-header">
 //   <img src={logo} className="App-logo" alt="logo" />

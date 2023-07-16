@@ -13,14 +13,6 @@ import {
 
 import { Button } from '../../shadcn-ui/components/ui/button'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../../shadcn-ui/components/ui/card'
-import {
   Tabs,
   TabsContent,
   TabsList,
@@ -33,6 +25,14 @@ import { RecentSales } from '../../shadcn-ui/components/examples/recent-sales'
 // import { Search } from '@/app/examples/dashboard/components/search'
 // import TeamSwitcher from '@/app/examples/dashboard/components/team-switcher'
 import { UserNav } from '../../shadcn-ui/components/examples/user-nav'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@sh/components/ui/card'
 
 export default function MainPage() {
   return (

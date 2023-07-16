@@ -7,6 +7,10 @@ module.exports = {
     'plugin:import/typescript',
   ],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: './tsconfig.eslint.json',
+    tsconfigRootDir: './',
+  },
   plugins: ['@typescript-eslint', 'prettier'],
   root: true,
   env: { node: true },
@@ -24,5 +28,9 @@ module.exports = {
       { ignoreParameters: true },
     ],
   },
-  settings: {},
+  settings: {
+    'import/resolver': {
+      typescript: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    },
+  },
 }

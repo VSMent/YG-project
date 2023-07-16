@@ -3,9 +3,9 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { produce, setAutoFreeze } from 'immer'
-import { Department, User } from '../data/User'
-import { Chat, Message } from '../data/Chat'
-import { Task, Status, PossibleStatuses } from '../data/Task'
+import { Department, User } from '@type/User'
+import { Chat, Message } from '@type/Chat'
+import { Task, Status, PossibleStatuses } from '@type/Task'
 
 // setAutoFreeze(false)
 type UserStore = {

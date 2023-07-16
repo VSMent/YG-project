@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
-import { User, Department, PossibleDepartments } from '../data/User'
-import { Chat } from '../data/Chat'
 import chatsData from '../data/chats.json'
 import peopleData from '../data/people.json'
 import tasksData from '../data/tasks.json'
-import { PossibleStatuses } from '../data/Task'
 import hashPassword from './HashPassword'
 import { useChatStore, useTaskStore, useUserStore } from './Stores'
+import { PossibleStatuses } from '@type/Task'
+import { Chat } from '@type/Chat'
+import { User, Department, PossibleDepartments } from '@type/User'
 
 const useDummyUserData = () => {
   const { users, addUserObj } = useUserStore()

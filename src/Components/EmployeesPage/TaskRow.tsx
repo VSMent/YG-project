@@ -1,5 +1,5 @@
-import { Badge } from '../../shadcn-ui/components/ui/badge'
-import { Task } from '../../data/Task'
+import { Task } from '@type/Task'
+import { Badge } from '@sh/components/ui/badge'
 
 type TaskRowProps = {
   task: Task

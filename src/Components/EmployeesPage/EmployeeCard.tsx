@@ -1,13 +1,13 @@
+import { Department, User } from '@type/User'
+import { Task } from '@type/Task'
+import { useTaskStore } from '@utils/Stores'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '../../shadcn-ui/components/ui/card'
-import { Department, User } from '../../data/User'
-import { Task } from '../../data/Task'
-import { useTaskStore } from '../../Utils/Stores'
+} from '@sh/components/ui/card'
 
 type EmployeeCardProps = {
   user: User

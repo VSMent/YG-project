@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { Chat } from '../../data/Chat'
 import { ScrollArea } from '../ScrollArea'
 import ChatMessage from './ChatMessage'
+import { Chat } from '@type/Chat'
 
 const convertToLocalTime = (date: Date) =>
   new Date(+date - date.getTimezoneOffset() * 60000)

@@ -1,9 +1,9 @@
 import { Outlet, useMatches } from 'react-router'
-import { useChatStore, useUserStore } from '../../Utils/Stores'
-import { Toaster } from '../../shadcn-ui/components/ui/toaster'
-import { UserNav } from '../../shadcn-ui/components/examples/user-nav'
 import LoginPage from '../LoginPage'
 import NavBar from './NavBar'
+import { useChatStore, useUserStore } from '@utils/Stores'
+import { Toaster } from '@sh/components/ui/toaster'
+import { UserNav } from '@sh/components/examples/user-nav'
 
 const Layout = () => {
   const { wipeUsers, logOut } = useUserStore()
