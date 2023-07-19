@@ -3,9 +3,11 @@ import chatsData from '../data/chats.json'
 import peopleData from '../data/people.json'
 import tasksData from '../data/tasks.json'
 import recruitingEventData from '../data/recruitingEvents.json'
+import equipmentData from '../data/equipment.json'
 import hashPassword from './HashPassword'
 import {
   useChatStore,
+  useEquipmentStore,
   useRecruitingEventStore,
   useTaskStore,
   useUserStore,
@@ -14,6 +16,10 @@ import { PossibleStatuses } from '@type/Task'
 import { Chat } from '@type/Chat'
 import { User, Department, PossibleDepartments } from '@type/User'
 import { RecruitingStatus } from '@type/RecrutingEvent'
+import {
+  EquipmentStatus,
+  PossibleStatuses as PossibleEquipmentStatuses,
+} from '@type/Equipment'
 
 const useDummyUserData = () => {
   const { users, addUserObj } = useUserStore()
@@ -91,6 +97,7 @@ const useDummyUserData = () => {
     return () => clearTimeout(timeout)
   })
 }
+
 const useDummyChatData = () => {
   const { users } = useUserStore()
   const { chats, addChat } = useChatStore()
@@ -134,6 +141,7 @@ const useDummyChatData = () => {
     }
   })
 }
+
 const useDummyTaskData = () => {
   const { tasks, addTask } = useTaskStore()
   const { findUsersByDepartment } = useUserStore()
@@ -185,9 +193,32 @@ const useDummyRecruitingEventData = () => {
   }, [])
 }
 
+const useDummyEquipmentData = () => {
+  const { equipment, addEquipment } = useEquipmentStore()
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (equipment.length === 0) {
+        equipmentData.forEach((eventData) => {
+          addEquipment(
+            eventData.name,
+            eventData.description,
+            PossibleEquipmentStatuses[
+              Math.floor(Math.random() * PossibleEquipmentStatuses.length)
+            ]
+          )
+        })
+      }
+    }, 0)
+
+    return () => clearTimeout(timeout)
+  }, [])
+}
+
 export {
   useDummyUserData,
   useDummyChatData,
   useDummyTaskData,
   useDummyRecruitingEventData,
+  useDummyEquipmentData,
 }

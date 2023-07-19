@@ -11,6 +11,7 @@ import {
   RecruitingStatus,
   PossibleStatuses as PossibleRecruitingStatuses,
 } from '@type/RecrutingEvent'
+import { Equipment, EquipmentStatus } from '@type/Equipment'
 
 // setAutoFreeze(false)
 type UserStore = {
@@ -267,6 +268,44 @@ export const useRecruitingEventStore = create<RecruitingEventStore>()(
       { name: 'recruiting-events' }
     ),
     { name: 'recruiting-events' }
+  )
+)
+
+type EquipmentStore = {
+  equipment: Equipment[]
+  lastEquipmentId: number
+  addEquipment: (
+    name: string,
+    description: string,
+    status: EquipmentStatus
+  ) => void
+}
+
+export const useEquipmentStore = create<EquipmentStore>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        equipment: [],
+        lastEquipmentId: 0,
+        addEquipment: (name, description, status) => {
+          const newEquipment: Equipment = {
+            id: ++get().lastEquipmentId,
+            name,
+            description,
+            status,
+          }
+          set(
+            produce((state) => {
+              state.equipment.push(newEquipment)
+            }),
+            false,
+            `add equipment ${name}`
+          )
+        },
+      }),
+      { name: 'equipment' }
+    ),
+    { name: 'equipment' }
   )
 )
 
