@@ -8,6 +8,7 @@ import MainPage from './MainPage'
 import EmployeesPage from './EmployeesPage'
 import CommunicationPage from './CommunicationPage'
 import PersonnelPage from './PersonnelPage'
+import ProductionPage from './ProductionPage'
 
 const Router = createBrowserRouter(
   [
@@ -49,7 +50,7 @@ const Router = createBrowserRouter(
         {
           path: NAV_LINKS.PRODUCTION.to,
           handle: { name: NAV_LINKS.PRODUCTION.name },
-          element: <>{NAV_LINKS.PRODUCTION.name}</>,
+          element: <ProductionPage />,
         },
         {
           path: NAV_LINKS.COMMUNICATION.to,
