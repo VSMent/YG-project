@@ -9,6 +9,7 @@ import EmployeesPage from './EmployeesPage'
 import CommunicationPage from './CommunicationPage'
 import PersonnelPage from './PersonnelPage'
 import ProductionPage from './ProductionPage'
+import FinancesPage from './FinancesPage'
 
 const Router = createBrowserRouter(
   [
@@ -45,7 +46,7 @@ const Router = createBrowserRouter(
         {
           path: NAV_LINKS.FINANCES.to,
           handle: { name: NAV_LINKS.FINANCES.name },
-          element: <>{NAV_LINKS.FINANCES.name}</>,
+          element: <FinancesPage />,
         },
         {
           path: NAV_LINKS.PRODUCTION.to,
