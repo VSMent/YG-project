@@ -4,22 +4,21 @@ import peopleData from '../data/people.json'
 import tasksData from '../data/tasks.json'
 import recruitingEventData from '../data/recruitingEvents.json'
 import equipmentData from '../data/equipment.json'
+import saleData from '../data/sale.json'
 import hashPassword from './HashPassword'
 import {
   useChatStore,
   useEquipmentStore,
   useRecruitingEventStore,
+  useSaleStore,
   useTaskStore,
   useUserStore,
 } from './Stores'
 import { PossibleStatuses } from '@type/Task'
 import { Chat } from '@type/Chat'
-import { User, Department, PossibleDepartments } from '@type/User'
+import { Department, PossibleDepartments, User } from '@type/User'
 import { RecruitingStatus } from '@type/RecrutingEvent'
-import {
-  EquipmentStatus,
-  PossibleStatuses as PossibleEquipmentStatuses,
-} from '@type/Equipment'
+import { PossibleStatuses as PossibleEquipmentStatuses } from '@type/Equipment'
 
 const useDummyUserData = () => {
   const { users, addUserObj } = useUserStore()
@@ -199,13 +198,39 @@ const useDummyEquipmentData = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (equipment.length === 0) {
-        equipmentData.forEach((eventData) => {
+        equipmentData.forEach((equipmentDatum) => {
           addEquipment(
-            eventData.name,
-            eventData.description,
+            equipmentDatum.name,
+            equipmentDatum.description,
             PossibleEquipmentStatuses[
               Math.floor(Math.random() * PossibleEquipmentStatuses.length)
             ]
+          )
+        })
+      }
+    }, 0)
+
+    return () => clearTimeout(timeout)
+  }, [])
+}
+
+const useDummySaleData = () => {
+  const { sales, addSale } = useSaleStore()
+  const { users } = useUserStore()
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (sales.length === 0) {
+        const customers = users.filter((u) => u.role == 'user')
+        const employees = users.filter((u) => u.role == 'employee')
+        saleData.forEach((saleDatum) => {
+          addSale(
+            saleDatum.product,
+            saleDatum.quantity,
+            saleDatum.price,
+            customers[Math.floor(Math.random() * customers.length)].login,
+            employees[Math.floor(Math.random() * employees.length)].login,
+            new Date(saleDatum.date)
           )
         })
       }
@@ -221,4 +246,5 @@ export {
   useDummyTaskData,
   useDummyRecruitingEventData,
   useDummyEquipmentData,
+  useDummySaleData,
 }

@@ -12,6 +12,7 @@ import {
   PossibleStatuses as PossibleRecruitingStatuses,
 } from '@type/RecrutingEvent'
 import { Equipment, EquipmentStatus } from '@type/Equipment'
+import { Sale } from '@type/Sale'
 
 // setAutoFreeze(false)
 type UserStore = {
@@ -306,6 +307,55 @@ export const useEquipmentStore = create<EquipmentStore>()(
       { name: 'equipment' }
     ),
     { name: 'equipment' }
+  )
+)
+
+type SaleStore = {
+  sales: Sale[]
+  lastSaleId: number
+  addSale: (
+    product: string,
+    quantity: number,
+    price: number,
+    customer: string,
+    salesperson: string,
+    date?: Date
+  ) => void
+}
+
+export const useSaleStore = create<SaleStore>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        sales: [],
+        lastSaleId: 0,
+        addSale: (product, quantity, price, customer, salesperson, date) => {
+          const newSale: Sale = {
+            id: ++get().lastSaleId,
+            product,
+            quantity,
+            price,
+            customer,
+            salesperson,
+            date: date ?? new Date(),
+          }
+          set(
+            produce((state) => {
+              state.sales.push(newSale)
+            }),
+            false,
+            `add ${product} sale`
+          )
+        },
+      }),
+      {
+        name: 'sales',
+        onRehydrateStorage: () => (state) => {
+          state?.sales.forEach((sale) => (sale.date = new Date(sale.date)))
+        },
+      }
+    ),
+    { name: 'sales' }
   )
 )
 

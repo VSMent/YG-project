@@ -5,6 +5,7 @@ import {
   useDummyChatData,
   useDummyEquipmentData,
   useDummyRecruitingEventData,
+  useDummySaleData,
   useDummyTaskData,
   useDummyUserData,
 } from '@utils/DummyDataGenerator'
@@ -31,6 +32,7 @@ function App() {
   useDummyTaskData()
   useDummyRecruitingEventData()
   useDummyEquipmentData()
+  useDummySaleData()
 
   return <RouterProvider router={Router} />
 }
