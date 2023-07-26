@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router'
 import React, { useEffect } from 'react'
 import LoginForm from './LoginForm'
 import { useUserStore } from '@hooks/Stores'
-import hashPassword from '@utils/HashPassword'
+import { HashPassword } from '@utils'
 import { useToast } from '@sh/components/ui/use-toast'
 import { Toaster } from '@sh/components/ui/toaster'
 
@@ -12,7 +12,7 @@ const LoginPage = () => {
   const navigate = useNavigate()
   const { toast } = useToast()
   const loginHandler = async (login: string, pass: string) => {
-    const hashedPass = await hashPassword(pass)
+    const hashedPass = await HashPassword(pass)
     const user = findUserByLogin(login)
     if (user && user.pass == hashedPass) {
       logInUser(user)
@@ -31,7 +31,7 @@ const LoginPage = () => {
   const registerHandler = async (login: string, pass: string) => {
     const user = findUserByLogin(login)
     if (!user) {
-      const hashedPass = await hashPassword(pass)
+      const hashedPass = await HashPassword(pass)
       registerUser(login, hashedPass)
       toast({
         title: 'Registered successfully',

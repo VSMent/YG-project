@@ -2,12 +2,7 @@ import { useEffect, useRef } from 'react'
 import { ScrollArea } from '../ScrollArea'
 import ChatMessage from './ChatMessage'
 import { Chat } from '@type/Chat'
-
-const convertToLocalTime = (date: Date) =>
-  new Date(+date - date.getTimezoneOffset() * 60000)
-    .toISOString()
-    .replace('T', ' ')
-    .slice(0, -5)
+import { ConvertToLocalTime } from '@utils'
 
 const ChatMessagesList = ({ activeChat }: { activeChat: Chat }) => {
   const lastRef = useRef<HTMLDivElement>(null)
@@ -30,7 +25,7 @@ const ChatMessagesList = ({ activeChat }: { activeChat: Chat }) => {
           : activeChat.participants.user.name
       }
       text={m.body}
-      time={convertToLocalTime(m.time)}
+      time={ConvertToLocalTime(m.time)}
       ref={i == arr.length - 1 ? lastRef : null}
     />
   ))

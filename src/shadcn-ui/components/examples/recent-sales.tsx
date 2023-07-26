@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { useUserStore } from '@hooks/Stores'
+import { NumberToCurrency } from '@utils'
 
 type RecentSale = {
   initials: string
@@ -16,9 +17,7 @@ export function RecentSales() {
   useEffect(() => {
     const newSales: RecentSale[] = []
     users.slice(Math.max(users.length - 5, 1)).forEach((user) => {
-      const amount = parseFloat(
-        (Math.random() * 10000 + 500).toFixed(2)
-      ).toLocaleString('uk-ua')
+      const amount = NumberToCurrency(Math.random() * 10000 + 500)
       newSales.push({
         initials: (
           user.firstname.charAt(0) + user.lastname.charAt(0)
@@ -47,7 +46,7 @@ export function RecentSales() {
             <p className="text-sm font-medium leading-none">{sale.name}</p>
             <p className="text-sm text-muted-foreground">{sale.email}</p>
           </div>
-          <div className="ml-auto font-medium">+ {sale.amount} ₴</div>
+          <div className="ml-auto font-medium">+ {sale.amount}</div>
         </div>
       ))}
     </div>
