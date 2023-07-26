@@ -10,6 +10,7 @@ import CommunicationPage from './CommunicationPage'
 import PersonnelPage from './PersonnelPage'
 import ProductionPage from './ProductionPage'
 import FinancesPage from './FinancesPage'
+import ClientsPage from './ClientsPage'
 
 const Router = createBrowserRouter(
   [
@@ -36,7 +37,7 @@ const Router = createBrowserRouter(
         {
           path: NAV_LINKS.CLIENTS.to,
           handle: { name: NAV_LINKS.CLIENTS.name },
-          element: <>{NAV_LINKS.CLIENTS.name}</>,
+          element: <ClientsPage />,
         },
         {
           path: NAV_LINKS.PERSONNEL.to,
