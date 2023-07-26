@@ -321,6 +321,7 @@ type SaleStore = {
     salesperson: string,
     date?: Date
   ) => void
+  findSalesByCustomerEmail: (email: string) => Sale[]
 }
 
 export const useSaleStore = create<SaleStore>()(
@@ -346,6 +347,9 @@ export const useSaleStore = create<SaleStore>()(
             false,
             `add ${product} sale`
           )
+        },
+        findSalesByCustomerEmail: (email) => {
+          return get().sales.filter((sale) => sale.customer === email)
         },
       }),
       {
