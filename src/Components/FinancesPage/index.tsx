@@ -63,7 +63,12 @@ const FinancesPage = () => {
     <>
       <div className="container h-full p-8 pt-6">
         <div className={'flex h-full'}>
-          <DataTable className={'w-full p-4'} columns={columns} data={sales} />
+          <DataTable
+            className={'flex w-full flex-col '}
+            columns={columns}
+            data={sales}
+            pageSize={20}
+          />
         </div>
       </div>
     </>
