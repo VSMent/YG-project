@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@sh/components/ui/card'
-import { useEquipmentStore } from '@utils/Stores'
+import { useEquipmentStore } from '@hooks/Stores'
 import { Equipment, PossibleStatuses } from '@type/Equipment'
 
 const ProductionPage = () => {

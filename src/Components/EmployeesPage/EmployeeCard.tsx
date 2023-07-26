@@ -1,6 +1,6 @@
+import { useTaskStore } from '@hooks/Stores'
 import { Department, User } from '@type/User'
 import { Task } from '@type/Task'
-import { useTaskStore } from '@utils/Stores'
 import {
   Card,
   CardContent,

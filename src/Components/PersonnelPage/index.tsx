@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@sh/components/ui/card'
-import { useRecruitingEventStore } from '@utils/Stores'
+import { useRecruitingEventStore } from '@hooks/Stores'
 import { RecruitingStatus } from '@type/RecrutingEvent'
 import { cn } from '@sh/lib/utils'
 

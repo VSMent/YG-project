@@ -5,7 +5,6 @@ import tasksData from '../data/tasks.json'
 import recruitingEventData from '../data/recruitingEvents.json'
 import equipmentData from '../data/equipment.json'
 import saleData from '../data/sale.json'
-import hashPassword from './HashPassword'
 import {
   useChatStore,
   useEquipmentStore,
@@ -14,6 +13,7 @@ import {
   useTaskStore,
   useUserStore,
 } from './Stores'
+import { HashPassword } from '@utils'
 import { PossibleStatuses } from '@type/Task'
 import { Chat } from '@type/Chat'
 import { Department, PossibleDepartments, User } from '@type/User'
@@ -33,7 +33,7 @@ const useDummyUserData = () => {
             ...peopleData.predefined.map(async (userData) => {
               const common = {
                 login: userData.login,
-                pass: await hashPassword(userData.pass),
+                pass: await HashPassword(userData.pass),
                 firstname: userData.firstname,
                 lastname: userData.lastname,
               }
@@ -59,7 +59,7 @@ const useDummyUserData = () => {
                 login: `${username}@${
                   Math.random() > 0.5 ? 'gmail.com' : 'outlook.com'
                 }`,
-                pass: await hashPassword(username),
+                pass: await HashPassword(username),
                 firstname:
                   peopleData.firstnames[
                     Math.floor(Math.random() * peopleData.firstnames.length)

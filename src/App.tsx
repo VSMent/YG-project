@@ -8,7 +8,7 @@ import {
   useDummySaleData,
   useDummyTaskData,
   useDummyUserData,
-} from '@utils/DummyDataGenerator'
+} from '@hooks/DummyDataGenerator'
 
 // <header className="App-header">
 //   <img src={logo} className="App-logo" alt="logo" />

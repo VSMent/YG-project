@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
-import { useUserStore } from '@utils/Stores'
+import { useUserStore } from '@hooks/Stores'
 
 type RecentSale = {
   initials: string

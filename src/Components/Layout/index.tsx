@@ -1,7 +1,7 @@
 import { Outlet, useMatches } from 'react-router'
 import LoginPage from '../LoginPage'
 import NavBar from './NavBar'
-import { useChatStore, useUserStore } from '@utils/Stores'
+import { useChatStore, useUserStore } from '@hooks/Stores'
 import { Toaster } from '@sh/components/ui/toaster'
 import { UserNav } from '@sh/components/examples/user-nav'
 

@@ -3,7 +3,7 @@ import HorizontalCardScroll from '../HorizontalCardScroll'
 import VerticalListScroll from '../VerticalListScroll'
 import EmployeeCard from './EmployeeCard'
 import TaskRow from './TaskRow'
-import { useTaskStore, useUserStore } from '@utils/Stores'
+import { useTaskStore, useUserStore } from '@hooks/Stores'
 import { Department } from '@type/User'
 import { Task } from '@type/Task'
 
