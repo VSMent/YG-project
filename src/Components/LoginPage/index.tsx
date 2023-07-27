@@ -7,35 +7,40 @@ import { useToast } from '@sh/components/ui/use-toast'
 import { Toaster } from '@sh/components/ui/toaster'
 
 const LoginPage = () => {
-  const { registerUser, findUserByLogin, logInUser, currentUser } =
+  const { registerUser, findUserByEmail, logInUser, currentUser } =
     useUserStore()
   const navigate = useNavigate()
   const { toast } = useToast()
-  const loginHandler = async (login: string, pass: string) => {
+  const loginHandler = async (email: string, pass: string) => {
     const hashedPass = await HashPassword(pass)
-    const user = findUserByLogin(login)
+    const user = findUserByEmail(email)
     if (user && user.pass == hashedPass) {
       logInUser(user)
       toast({
         title: 'Logged in successfully',
-        description: `Hello, ${user.login}`,
+        description: `Hello, ${user.email}`,
       })
     } else {
       toast({
         title: 'Credentials error',
-        description: 'Login or password is wrong',
+        description: 'Email or password is wrong',
         variant: 'destructive',
       })
     }
   }
-  const registerHandler = async (login: string, pass: string) => {
-    const user = findUserByLogin(login)
+  const registerHandler = async (
+    email: string,
+    pass: string,
+    firstname: string,
+    lastname: string
+  ) => {
+    const user = findUserByEmail(email)
     if (!user) {
       const hashedPass = await HashPassword(pass)
-      registerUser(login, hashedPass)
+      registerUser(email, hashedPass, firstname, lastname)
       toast({
         title: 'Registered successfully',
-        description: 'Proceed to login',
+        description: 'Proceed to log in',
       })
     } else {
       toast({

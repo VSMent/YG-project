@@ -32,7 +32,7 @@ const useDummyUserData = () => {
           await Promise.all([
             ...peopleData.predefined.map(async (userData) => {
               const common = {
-                login: userData.login,
+                email: userData.email,
                 pass: await HashPassword(userData.pass),
                 firstname: userData.firstname,
                 lastname: userData.lastname,
@@ -56,10 +56,10 @@ const useDummyUserData = () => {
 
             ...peopleData.usernames.map(async (username) => {
               const common = {
-                login: `${username}@${
+                email: `${username}@${
                   Math.random() > 0.5 ? 'gmail.com' : 'outlook.com'
                 }`,
-                pass: await HashPassword(username),
+                pass: await HashPassword(`${username}1234`),
                 firstname:
                   peopleData.firstnames[
                     Math.floor(Math.random() * peopleData.firstnames.length)
@@ -118,14 +118,14 @@ const useDummyChatData = () => {
           const c: Chat = {
             id: 0,
             participants: {
-              employee: { email: employee.login, name: employee.firstname },
-              user: { email: user.login, name: user.firstname },
+              employee: { email: employee.email, name: employee.firstname },
+              user: { email: user.email, name: user.firstname },
             },
             messages: [],
           }
           chatDatum.forEach((messageDatum) => {
             c.messages.push({
-              authorEmail: messageDatum[0] == 'e' ? employee.login : user.login,
+              authorEmail: messageDatum[0] == 'e' ? employee.email : user.email,
               body: messageDatum[1],
               time: new Date(messageDatum[2]),
             })
@@ -159,7 +159,7 @@ const useDummyTaskData = () => {
           addTask(
             taskDatum.title,
             taskDatum.body,
-            employees[Math.floor(Math.random() * employees.length)].login,
+            employees[Math.floor(Math.random() * employees.length)].email,
             PossibleStatuses[
               Math.floor(Math.random() * PossibleStatuses.length)
             ]
@@ -228,8 +228,8 @@ const useDummySaleData = () => {
             saleDatum.product,
             saleDatum.quantity,
             saleDatum.price,
-            customers[Math.floor(Math.random() * customers.length)].login,
-            employees[Math.floor(Math.random() * employees.length)].login,
+            customers[Math.floor(Math.random() * customers.length)].email,
+            employees[Math.floor(Math.random() * employees.length)].email,
             new Date(saleDatum.date)
           )
         })

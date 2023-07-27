@@ -55,7 +55,7 @@ const EmployeeCard = ({
 }: EmployeeCardProps) => {
   const { activeSelection, setActiveTaskSelection } = useTaskStore()
   return (
-    <Card className={'bg-muted'} key={user.login}>
+    <Card className={'bg-muted'} key={user.email}>
       <CardHeader>
         <CardTitle>
           <div className="flex items-center justify-between space-x-4">
@@ -68,7 +68,7 @@ const EmployeeCard = ({
             </div>
           </div>
         </CardTitle>
-        <CardDescription>{user.login}</CardDescription>
+        <CardDescription>{user.email}</CardDescription>
       </CardHeader>
       <CardContent className="flex w-max flex-row gap-2">
         <div className="flex flex-col">
@@ -76,11 +76,11 @@ const EmployeeCard = ({
             label={'Запланованих завдань'}
             count={tasks['New']?.length ?? 0}
             clickHandler={() => {
-              setActiveTaskSelection(department, user.login, 'New')
+              setActiveTaskSelection(department, user.email, 'New')
               clickHandler(tasks['New'] ?? [])
             }}
             renderActive={
-              activeSelection[department]?.email == user.login &&
+              activeSelection[department]?.email == user.email &&
               activeSelection[department]?.status == 'New'
             }
           />
@@ -88,11 +88,11 @@ const EmployeeCard = ({
             label={'Завдань у прогресі'}
             count={tasks['InProgress']?.length ?? 0}
             clickHandler={() => {
-              setActiveTaskSelection(department, user.login, 'InProgress')
+              setActiveTaskSelection(department, user.email, 'InProgress')
               clickHandler(tasks['InProgress'] ?? [])
             }}
             renderActive={
-              activeSelection[department]?.email == user.login &&
+              activeSelection[department]?.email == user.email &&
               activeSelection[department]?.status == 'InProgress'
             }
           />
@@ -100,11 +100,11 @@ const EmployeeCard = ({
             label={'Завдань на перевірці'}
             count={tasks['InCheck']?.length ?? 0}
             clickHandler={() => {
-              setActiveTaskSelection(department, user.login, 'InCheck')
+              setActiveTaskSelection(department, user.email, 'InCheck')
               clickHandler(tasks['InCheck'] ?? [])
             }}
             renderActive={
-              activeSelection[department]?.email == user.login &&
+              activeSelection[department]?.email == user.email &&
               activeSelection[department]?.status == 'InCheck'
             }
           />
@@ -112,11 +112,11 @@ const EmployeeCard = ({
             label={'Виконаних завдань'}
             count={tasks['Done']?.length ?? 0}
             clickHandler={() => {
-              setActiveTaskSelection(department, user.login, 'Done')
+              setActiveTaskSelection(department, user.email, 'Done')
               clickHandler(tasks['Done'] ?? [])
             }}
             renderActive={
-              activeSelection[department]?.email == user.login &&
+              activeSelection[department]?.email == user.email &&
               activeSelection[department]?.status == 'Done'
             }
           />

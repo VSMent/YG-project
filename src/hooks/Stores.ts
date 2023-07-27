@@ -20,8 +20,13 @@ type UserStore = {
   currentUser: User | null
   wipeUsers: () => void
   addUserObj: (user: User) => void
-  registerUser: (login: string, pass: string) => void
-  findUserByLogin: (login: string) => User | null
+  registerUser: (
+    email: string,
+    pass: string,
+    firstname: string,
+    lastname: string
+  ) => void
+  findUserByEmail: (email: string) => User | null
   findUsersByDepartment: (department: Department) => User[]
   logInUser: (user: User) => void
   logOut: () => void
@@ -39,15 +44,15 @@ export const useUserStore = create<UserStore>()(
               state.users.push(user)
             }),
             false,
-            `addUser as Object ${user.login}`
+            `addUser as Object ${user.email}`
           )
         },
-        registerUser: (login, pass) => {
+        registerUser: (email, pass, firstname, lastname) => {
           const user: User = {
-            login: login,
-            pass: pass,
-            firstname: '',
-            lastname: '',
+            email,
+            pass,
+            firstname,
+            lastname,
             role: 'user',
           }
           set(
@@ -55,17 +60,17 @@ export const useUserStore = create<UserStore>()(
               state.users.push(user)
             }),
             false,
-            `registerUser ${user.login}`
+            `registerUser ${user.email}`
           )
         },
-        findUserByLogin: (login) =>
-          get().users.filter((user) => user.login === login)[0] ?? null,
+        findUserByEmail: (email) =>
+          get().users.filter((user) => user.email === email)[0] ?? null,
         findUsersByDepartment: (department) =>
           get().users.filter(
             (user) => user.role == 'employee' && user.department == department
           ),
         logInUser: (user) => {
-          set(() => ({ currentUser: user }), false, `logInUser ${user.login}`)
+          set(() => ({ currentUser: user }), false, `logInUser ${user.email}`)
         },
         logOut: () => {
           set(() => ({ currentUser: null }), false, 'logOut')

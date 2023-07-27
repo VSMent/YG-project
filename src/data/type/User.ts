@@ -7,7 +7,7 @@ type Department = (typeof PossibleDepartments)[number]
 type User = {
   firstname: string
   lastname: string
-  login: string
+  email: string
   pass: string
 } & (
   | { role: Exclude<Role, 'employee'> }

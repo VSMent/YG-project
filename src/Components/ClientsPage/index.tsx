@@ -22,7 +22,7 @@ const columns: ColumnDef<CustomerData>[] = [
     header: 'Прізвище',
   },
   {
-    accessorKey: 'login',
+    accessorKey: 'email',
     header: 'E-mail',
   },
   {
@@ -43,7 +43,7 @@ const ClientsPage = () => {
   const customers: CustomerData[] = users
     .filter((user) => user.role === 'user')
     .map((user) => {
-      const userSales = findSalesByCustomerEmail(user.login)
+      const userSales = findSalesByCustomerEmail(user.email)
       const orderCount = userSales.length
       const totalOrderPrice = userSales.reduce(
         (acc, sale) => acc + sale.quantity * sale.price,

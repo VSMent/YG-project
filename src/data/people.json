@@ -1,14 +1,14 @@
 {
   "predefined": [
     {
-      "login": "admin@gmail.com",
-      "pass": "admin",
+      "email": "admin@gmail.com",
+      "pass": "admin123",
       "firstname": "Максим",
       "lastname": "Стасюк",
       "role": "admin"
     },
     {
-      "login": "marketing@gmail.com",
+      "email": "marketing@gmail.com",
       "pass": "marketing",
       "firstname": "Денис",
       "lastname": "Валентинін",
@@ -16,7 +16,7 @@
       "department": "marketing"
     },
     {
-      "login": "personnel@gmail.com",
+      "email": "personnel@gmail.com",
       "pass": "personnel",
       "firstname": "Андрій",
       "lastname": "Рубайло",
@@ -24,8 +24,8 @@
       "department": "personnel"
     },
     {
-      "login": "user@gmail.com",
-      "pass": "user",
+      "email": "user@gmail.com",
+      "pass": "user1234",
       "firstname": "Олена",
       "lastname": "Павленко",
       "role": "user"

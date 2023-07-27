@@ -23,7 +23,7 @@ export function RecentSales() {
           user.firstname.charAt(0) + user.lastname.charAt(0)
         ).toUpperCase(),
         name: `${user.firstname} ${user.lastname}`,
-        email: user.login,
+        email: user.email,
         amount: amount,
       })
     })

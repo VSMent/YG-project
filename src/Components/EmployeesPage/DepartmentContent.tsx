@@ -22,8 +22,8 @@ const DepartmentContent = ({ department }: DepartmentBlockProps) => {
   const userTasks: { [email: string]: { [status: string]: Task[] } } = {}
 
   users.forEach((user) => {
-    userTasks[user.login] = sortTasksByStatuses(
-      findTasksForEmployee(user.login)
+    userTasks[user.email] = sortTasksByStatuses(
+      findTasksForEmployee(user.email)
     )
   })
 
@@ -44,10 +44,10 @@ const DepartmentContent = ({ department }: DepartmentBlockProps) => {
       <HorizontalCardScroll>
         {users.map((user) => (
           <EmployeeCard
-            key={user.login}
+            key={user.email}
             department={department}
             user={user}
-            tasks={userTasks[user.login]}
+            tasks={userTasks[user.email]}
             clickHandler={updateActive}
           />
         ))}
