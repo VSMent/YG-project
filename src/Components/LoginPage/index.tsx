@@ -53,14 +53,14 @@ const LoginPage = () => {
   }, [])
 
   return (
-    <>
+    <div className="container flex h-screen w-1/2 flex-col justify-center gap-4">
       <LoginForm
         loginHandler={loginHandler}
         registerHandler={registerHandler}
       />
 
       <Toaster />
-    </>
+    </div>
   )
 }
 
