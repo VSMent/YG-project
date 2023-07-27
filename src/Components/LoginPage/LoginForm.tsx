@@ -13,34 +13,68 @@ import {
 import { Button } from '@sh/components/ui/button'
 import { Input } from '@sh/components/ui/input'
 
-const formSchema = z.object({
-  firstName: z
-    .string()
-    .min(2, { message: 'У імені має бути 2 чи більше символів' })
-    .max(15, { message: "Ім'я задовге" }),
-  lastName: z
-    .string()
-    .min(2, { message: 'У прізвищі має бути 2 чи більше символів' })
-    .max(15, { message: 'Прізвище задовге' }),
-  email: z
-    .string()
-    .email({ message: 'Тут має бути вказаний емейл' })
-    .min(7, { message: 'В емейлі має бути 7 чи більше символів' })
-    .max(50, { message: 'Емейл задовгий' }),
-  pass: z
-    .string()
-    .min(8, { message: 'У паролі має бути 8 чи більше символів' })
-    .max(50, { message: 'Пароль задовгий' }),
-})
+type LoginFormProps = {
+  loginHandler: (email: string, pass: string) => Promise<void>
+  registerHandler: (
+    email: string,
+    pass: string,
+    firstname: string,
+    lastname: string
+  ) => Promise<void>
+}
+
+const formSchema = z.intersection(
+  z.object({
+    email: z
+      .string()
+      .email({ message: 'Тут має бути вказаний емейл' })
+      .min(7, { message: 'В емейлі має бути 7 чи більше символів' })
+      .max(50, { message: 'Емейл задовгий' }),
+    pass: z
+      .string()
+      .min(8, { message: 'У паролі має бути 8 чи більше символів' })
+      .max(50, { message: 'Пароль задовгий' }),
+  }),
+  z.discriminatedUnion('isLogin', [
+    z.object({
+      isLogin: z.literal(false),
+      firstname: z
+        .string()
+        .min(2, { message: 'У імені має бути 2 чи більше символів' })
+        .max(15, { message: "Ім'я задовге" }),
+      lastname: z
+        .string()
+        .min(2, { message: 'У прізвищі має бути 2 чи більше символів' })
+        .max(15, { message: 'Прізвище задовге' }),
+    }),
+    z.object({
+      isLogin: z.literal(true),
+    }),
+  ])
+)
 
 const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
   const [isLogin, setIsLogin] = useState(true)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { firstName: '', lastName: '', email: '', pass: '' },
+    defaultValues: {
+      firstname: '',
+      lastname: '',
+      email: '',
+      pass: '',
+      isLogin: isLogin,
+    },
   })
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values, isLogin)
+    if (values.isLogin)
+      loginHandler(values.email, values.pass).catch(console.error)
+    else
+      registerHandler(
+        values.email,
+        values.pass,
+        values.firstname,
+        values.lastname
+      ).catch(console.error)
   }
   return (
     <Form {...form}>
@@ -81,7 +115,7 @@ const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
           <>
             <FormField
               control={form.control}
-              name="firstName"
+              name="firstname"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Ім'я</FormLabel>
@@ -94,7 +128,7 @@ const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
             />
             <FormField
               control={form.control}
-              name="lastName"
+              name="lastname"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Прізвище</FormLabel>
@@ -111,7 +145,10 @@ const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
           <Button
             variant={'outline'}
             type="button"
-            onClick={() => setIsLogin(!isLogin)}
+            onClick={() => {
+              setIsLogin(!isLogin)
+              form.setValue('isLogin', !isLogin)
+            }}
           >
             {isLogin ? 'У мене ще немає акаунту' : 'У мене вже є акаунт'}
           </Button>
@@ -122,47 +159,6 @@ const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
       </form>
     </Form>
   )
-  // const loginInput = useRef<HTMLInputElement>(null)
-  // const passInput = useRef<HTMLInputElement>(null)
-  //
-  // return (
-  //   <>
-  //     <div className={styles.Login}>
-  //       <h1>Login</h1>
-  //       <label htmlFor="login">Login:</label>
-  //       <input id="login" type="text" name="login" ref={loginInput} />
-  //       <label htmlFor="pass">Password:</label>
-  //       <input id="pass" type="password" name="pass" ref={passInput} />
-  //       <button
-  //         type="button"
-  //         onClick={() => {
-  //           loginHandler(
-  //             loginInput.current?.value ?? '',
-  //             passInput.current?.value ?? ''
-  //           ).catch(console.error)
-  //         }}
-  //       >
-  //         Login
-  //       </button>
-  //       <button
-  //         className={'bg-amber-800'}
-  //         type="button"
-  //         onClick={() => {
-  //           registerHandler(
-  //             loginInput.current?.value ?? '',
-  //             passInput.current?.value ?? ''
-  //           ).catch(console.error)
-  //         }}
-  //       >
-  //         Register
-  //       </button>
-  //     </div>
-  //   </>
-  // )
 }
 
-type LoginFormProps = {
-  loginHandler: (login: string, pass: string) => Promise<void>
-  registerHandler: (login: string, pass: string) => Promise<void>
-}
 export default LoginForm
