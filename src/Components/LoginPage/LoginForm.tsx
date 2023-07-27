@@ -2,6 +2,7 @@ import { useState } from 'react'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { Eye, EyeOff } from 'lucide-react'
 import {
   Form,
   FormControl,
@@ -55,6 +56,8 @@ const formSchema = z.intersection(
 
 const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
   const [isLogin, setIsLogin] = useState(true)
+  const [showPassword, setShowPassword] = useState(false)
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -76,6 +79,7 @@ const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
         values.lastname
       ).catch(console.error)
   }
+
   return (
     <Form {...form}>
       <div className={'text-center text-2xl'}>
@@ -102,10 +106,27 @@ const LoginForm = ({ loginHandler, registerHandler }: LoginFormProps) => {
           control={form.control}
           name="pass"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className={'relative'}>
               <FormLabel>Пароль</FormLabel>
               <FormControl>
-                <Input placeholder="Strong_pa55w0rd" {...field} />
+                <>
+                  <Input
+                    placeholder="Strong_pa55w0rd"
+                    type={showPassword ? 'text' : 'password'}
+                    {...field}
+                    className={'pr-16'}
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={() => {
+                      setShowPassword(!showPassword)
+                    }}
+                    className="absolute bottom-0 right-0"
+                  >
+                    {showPassword ? <EyeOff /> : <Eye />}
+                  </Button>
+                </>
               </FormControl>
               <FormMessage />
             </FormItem>
