@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "https://vsment.github.io/YG-project/static/css/main.ff549169.css",
-    "main.js": "https://vsment.github.io/YG-project/static/js/main.1428813e.js",
+    "main.css": "https://vsment.github.io/YG-project/static/css/main.0a740798.css",
+    "main.js": "https://vsment.github.io/YG-project/static/js/main.229bde00.js",
     "static/js/496.94df8e77.chunk.js": "https://vsment.github.io/YG-project/static/js/496.94df8e77.chunk.js",
     "index.html": "https://vsment.github.io/YG-project/index.html",
-    "main.ff549169.css.map": "https://vsment.github.io/YG-project/static/css/main.ff549169.css.map",
-    "main.1428813e.js.map": "https://vsment.github.io/YG-project/static/js/main.1428813e.js.map",
+    "main.0a740798.css.map": "https://vsment.github.io/YG-project/static/css/main.0a740798.css.map",
+    "main.229bde00.js.map": "https://vsment.github.io/YG-project/static/js/main.229bde00.js.map",
     "496.94df8e77.chunk.js.map": "https://vsment.github.io/YG-project/static/js/496.94df8e77.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff549169.css",
-    "static/js/main.1428813e.js"
+    "static/css/main.0a740798.css",
+    "static/js/main.229bde00.js"
   ]
 }
