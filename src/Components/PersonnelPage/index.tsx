@@ -28,9 +28,9 @@ const PersonnelPage = () => {
   const isActiveStatus = (status: RecruitingStatus) =>
     activeEventsSelection.every((event) => event.status == status)
 
-  const open = findEventsByStatus('OpenPosition')
-  const interview = findEventsByStatus('Interview')
-  const closed = findEventsByStatus('ClosedPosition')
+  const openPositionEvents = findEventsByStatus('OpenPosition')
+  const interviewEvents = findEventsByStatus('Interview')
+  const closedPositionEvents = findEventsByStatus('ClosedPosition')
 
   return (
     <>
@@ -51,7 +51,7 @@ const PersonnelPage = () => {
               >
                 <RecruitingEventCard
                   title={'Відкриті вакансії'}
-                  events={open}
+                  events={openPositionEvents}
                   onClick={() => {
                     setActiveEventsSelection('OpenPosition')
                   }}
@@ -60,7 +60,7 @@ const PersonnelPage = () => {
 
                 <RecruitingEventCard
                   title={'Співбесіди'}
-                  events={interview}
+                  events={interviewEvents}
                   onClick={() => {
                     setActiveEventsSelection('Interview')
                   }}
@@ -69,7 +69,7 @@ const PersonnelPage = () => {
 
                 <RecruitingEventCard
                   title={'Закриті вакансії'}
-                  events={closed}
+                  events={closedPositionEvents}
                   onClick={() => {
                     setActiveEventsSelection('ClosedPosition')
                   }}
