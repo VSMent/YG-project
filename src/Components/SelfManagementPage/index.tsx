@@ -9,12 +9,12 @@ import TitleCard from './TitleCard'
 const SelfManagementPage = () => {
   return (
     <>
-      <div className="container h-full p-8 pt-6">
+      <div className="container flex h-full flex-col p-8 pt-6">
         <Accordion
           type="single"
           collapsible={true}
           defaultValue="recruting"
-          className={'flex h-full flex-col gap-3'}
+          className={'flex flex-[1_0_1px] flex-col gap-3'}
         >
           <AccordionItem value="recruting" className={'flex flex-col '}>
             <AccordionTrigger>Робота</AccordionTrigger>
@@ -23,15 +23,12 @@ const SelfManagementPage = () => {
                 'flex flex-[1_0_1px] flex-row flex-wrap content-around justify-evenly gap-4 '
               }
             >
-              <TitleCard title="Відгуки про працівників" />
+              <TitleCard title="База знань" />
               <TitleCard title="Мої задачі" />
               <TitleCard title="КРІ" />
               <TitleCard title="Календар" />
               <TitleCard title="Заплановані зустрічі" />
               <TitleCard title="Нарахована ЗП" />
-
-              <TitleCard title="Пульс роботи" className="aspect-square w-64" />
-              <TitleCard title="Пульс життя" className="aspect-square w-64" />
             </AccordionContent>
           </AccordionItem>
 
@@ -50,6 +47,20 @@ const SelfManagementPage = () => {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+        <div
+          className={'my-10 flex flex-wrap content-around justify-evenly gap-4'}
+        >
+          <TitleCard
+            title="Пульс роботи"
+            content="93,8%"
+            className="aspect-square w-64"
+          />
+          <TitleCard
+            title="Пульс особистого життя"
+            content="76,3%"
+            className="aspect-square w-64"
+          />
+        </div>
       </div>
     </>
   )
