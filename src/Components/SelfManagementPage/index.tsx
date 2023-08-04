@@ -4,30 +4,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '../Accordion'
-import { Card, CardHeader, CardTitle } from '@sh/components/ui/card'
-import { cn } from '@sh/lib/utils'
+import TitleCard from './TitleCard'
 
-const TitleCard = ({
-  title,
-  className,
-}: {
-  title: string
-  className?: string
-}) => {
-  return (
-    <Card
-      className={cn(
-        'flex cursor-pointer select-none flex-col text-center',
-        'hover:bg-muted-foreground/40 active:bg-muted-foreground/20',
-        className
-      )}
-    >
-      <CardHeader className={'m-auto text-2xl'}>
-        <CardTitle>{title}</CardTitle>
-      </CardHeader>
-    </Card>
-  )
-}
 const SelfManagementPage = () => {
   return (
     <>
