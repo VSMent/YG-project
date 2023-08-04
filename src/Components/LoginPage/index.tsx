@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import LoginForm from './LoginForm'
 import { useUserStore } from '@hooks/Stores'
 import { HashPassword } from '@utils'

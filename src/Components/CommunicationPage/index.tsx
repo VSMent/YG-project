@@ -1,10 +1,8 @@
 import { Send } from 'lucide-react'
-
 import { useEffect, useRef, useState } from 'react'
-
-import { useChatStore } from '@hooks/Stores'
 import ChatListButton from './ChatListButton'
 import ChatMessagesList from './ChatMessagesList'
+import { useChatStore } from '@hooks/Stores'
 import { Button } from '@sh/components/ui/button'
 import { Textarea } from '@sh/components/ui/textarea'
 import { useToast } from '@sh/components/ui/use-toast'

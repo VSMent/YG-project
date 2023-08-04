@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
-import { immer } from 'zustand/middleware/immer'
-import { produce, setAutoFreeze } from 'immer'
+import { produce } from 'immer'
 import { Department, User } from '@type/User'
 import { Chat, Message } from '@type/Chat'
 import { Task, Status, PossibleStatuses } from '@type/Task'
@@ -14,7 +13,6 @@ import {
 import { Equipment, EquipmentStatus } from '@type/Equipment'
 import { Sale } from '@type/Sale'
 
-// setAutoFreeze(false)
 type UserStore = {
   users: User[]
   currentUser: User | null
@@ -367,47 +365,3 @@ export const useSaleStore = create<SaleStore>()(
     { name: 'sales' }
   )
 )
-
-//<editor-fold desc="some tests">
-// type bearsType = {
-//   // bears: number
-//   // fishes: number
-//   // increasePopulation: () => void
-//   // removeAllBears: () => void
-//   // addFishes: (count: number) => void
-//   plants: { type: { lvl: { type: { name: string }; count: number } } }
-//   changePlantNameImmer: () => void
-// }
-// export const useStore = create(
-//   devtools(
-//     persist(
-//       immer<bearsType>((set) => ({
-//         // bears: 0,
-//         // fishes: 0,
-//         // increasePopulation: () =>
-//         //   set((state) => ({ bears: state.bears + 1 }), false, 'inc'),
-//         // removeAllBears: () => set({ bears: 0 }),
-//         // addFishes: (count) =>
-//         //   set((state) => ({ fishes: state.fishes + count }), false, {
-//         //     type: 'bear/addFishes',
-//         //     count,
-//         //   }),
-//         plants: { type: { lvl: { type: { name: '' }, count: 1 } } },
-//         changePlantNameImmer: () =>
-//           set(
-//             (state) => {
-//               state.plants.type.lvl.type.name = 'asdImmer'
-//             },
-//             false,
-//             // @ts-ignore
-//             'change name immer'
-//           ),
-//       })),
-//       {
-//         name: 'food-storage', // name of the item in the storage (must be unique)
-//       }
-//     ),
-//     { name: 'bears' }
-//   )
-// )
-//</editor-fold>

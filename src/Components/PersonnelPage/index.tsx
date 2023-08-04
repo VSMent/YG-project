@@ -7,13 +7,7 @@ import {
 import HorizontalCardScroll from '../HorizontalCardScroll'
 import VerticalListScroll from '../VerticalListScroll'
 import RecruitingEventCard from './RecruitingEventCard'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@sh/components/ui/card'
+import { Card, CardHeader, CardTitle } from '@sh/components/ui/card'
 import { useRecruitingEventStore } from '@hooks/Stores'
 import { RecruitingStatus } from '@type/RecrutingEvent'
 import { cn } from '@sh/lib/utils'
