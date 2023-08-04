@@ -1,6 +1,5 @@
-'use client'
-
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+import { NumberToCurrency } from '@utils'
 
 const data = [
   {
@@ -53,7 +52,7 @@ const data = [
   },
 ]
 
-export function Overview() {
+export function OverviewChart() {
   return (
     <ResponsiveContainer width="100%" height={350}>
       <BarChart data={data}>
@@ -70,8 +69,9 @@ export function Overview() {
           tickLine={false}
           axisLine={false}
           width={65}
-          tickFormatter={(value: number) =>
-            `${value.toLocaleString('uk-ua')} ₴`
+          tickFormatter={
+            (value: number) => NumberToCurrency(value)
+            // `${value.toLocaleString('uk-ua')} ₴`
           }
         />
         <Bar dataKey="total" fill="#adfa1d" radius={[4, 4, 0, 0]} />

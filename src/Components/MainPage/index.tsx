@@ -4,32 +4,15 @@ import {
   ClipboardCheck,
   CreditCard,
   DollarSign,
-  Download,
   Hash,
-  HashIcon,
-  Users,
   Wallet,
 } from 'lucide-react'
-
-import { Button } from '../../shadcn-ui/components/ui/button'
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '../../shadcn-ui/components/ui/tabs'
-// import { CalendarDateRangePicker } from '@/app/examples/dashboard/components/date-range-picker'
-import { MainNav } from '../../shadcn-ui/components/examples/main-nav'
-import { Overview } from '../../shadcn-ui/components/examples/overview'
-import { RecentSales } from '../../shadcn-ui/components/examples/recent-sales'
-// import { Search } from '@/app/examples/dashboard/components/search'
-// import TeamSwitcher from '@/app/examples/dashboard/components/team-switcher'
-import { UserNav } from '../../shadcn-ui/components/examples/user-nav'
+import { OverviewChart } from './OverviewChart'
+import { RecentSales } from './RecentSales'
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@sh/components/ui/card'
@@ -39,15 +22,6 @@ export default function MainPage() {
     <>
       <div className="hidden h-full flex-col md:flex">
         <div className="flex-1 space-y-4 p-8 pt-6">
-          {/*<div className="flex items-center justify-between space-y-2">*/}
-          {/*<div className="flex items-center space-x-2">*/}
-          {/*  <Button>*/}
-          {/*    <Download className="mr-2 h-4 w-4" />*/}
-          {/*    Download*/}
-          {/*  </Button>*/}
-          {/*</div>*/}
-          {/*</div>*/}
-
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <Card>
@@ -167,7 +141,7 @@ export default function MainPage() {
                   <CardTitle>Overview</CardTitle>
                 </CardHeader>
                 <CardContent className="pl-2">
-                  <Overview />
+                  <OverviewChart />
                 </CardContent>
               </Card>
               <Card className="col-span-3">
