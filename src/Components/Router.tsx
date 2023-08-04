@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom'
-import React from 'react'
 import { NAV_LINKS } from '../data/constants'
 import LoginPage from './LoginPage'
 import ErrorPage from './ErrorPage'
@@ -11,6 +10,7 @@ import PersonnelPage from './PersonnelPage'
 import ProductionPage from './ProductionPage'
 import FinancesPage from './FinancesPage'
 import ClientsPage from './ClientsPage'
+import SelfManagementPage from './SelfManagementPage'
 
 const Router = createBrowserRouter(
   [
@@ -62,7 +62,7 @@ const Router = createBrowserRouter(
         {
           path: NAV_LINKS.SELF_MANAGEMENT.to,
           handle: { name: NAV_LINKS.SELF_MANAGEMENT.name },
-          element: <>{NAV_LINKS.SELF_MANAGEMENT.name}</>,
+          element: <SelfManagementPage />,
         },
       ],
     },
