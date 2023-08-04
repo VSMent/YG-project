@@ -72,9 +72,9 @@ export default function MainPage() {
                   <Activity className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">+573</div>
+                  <div className="text-2xl font-bold">93,62%</div>
                   <p className="text-xs text-muted-foreground">
-                    +201 з минулої години
+                    +3,5% з минулої години
                   </p>
                 </CardContent>
               </Card>
@@ -127,9 +127,9 @@ export default function MainPage() {
                   <Activity className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">+573</div>
+                  <div className="text-2xl font-bold">83,58%</div>
                   <p className="text-xs text-muted-foreground">
-                    +201 з минулої години
+                    +2,1% з минулої години
                   </p>
                 </CardContent>
               </Card>
