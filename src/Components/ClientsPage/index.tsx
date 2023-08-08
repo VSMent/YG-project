@@ -62,7 +62,7 @@ const ClientsPage = () => {
             className={'flex w-full flex-col '}
             columns={columns}
             data={customers}
-            pageSize={20}
+            pageSize={18}
           />
         </div>
       </div>

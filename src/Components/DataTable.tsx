@@ -51,7 +51,7 @@ const DataTable = <TData, TValue>({
 
   return (
     <div className={cn(className)}>
-      <div className={'h-full rounded-md border p-4 pt-10'}>
+      <div className={'h-full rounded-md border p-4'}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
