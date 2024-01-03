@@ -4,10 +4,11 @@ import peopleData from '../data/people.json'
 import tasksData from '../data/tasks.json'
 import recruitingEventData from '../data/recruitingEvents.json'
 import equipmentData from '../data/equipment.json'
+import kanbanData from '../data/kanban.json'
 import saleData from '../data/sale.json'
 import {
   useChatStore,
-  useEquipmentStore,
+  useKanbanTaskStore,
   useRecruitingEventStore,
   useSaleStore,
   useTaskStore,
@@ -18,7 +19,7 @@ import { PossibleStatuses } from '@type/Task'
 import { Chat } from '@type/Chat'
 import { Department, PossibleDepartments, User } from '@type/User'
 import { RecruitingStatus } from '@type/RecrutingEvent'
-import { PossibleStatuses as PossibleEquipmentStatuses } from '@type/Equipment'
+import { PossibleStatuses as PossibleKanbanStatuses } from '@type/KanbanTask'
 
 const useDummyUserData = () => {
   const { users, addUserObj } = useUserStore()
@@ -192,18 +193,18 @@ const useDummyRecruitingEventData = () => {
   }, [])
 }
 
-const useDummyEquipmentData = () => {
-  const { equipment, addEquipment } = useEquipmentStore()
+const useDummyKanbanData = () => {
+  const { kanbanTasks, addKanbanTask } = useKanbanTaskStore()
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (equipment.length === 0) {
-        equipmentData.forEach((equipmentDatum) => {
-          addEquipment(
-            equipmentDatum.name,
-            equipmentDatum.description,
-            PossibleEquipmentStatuses[
-              Math.floor(Math.random() * PossibleEquipmentStatuses.length)
+      if (kanbanTasks.length === 0) {
+        kanbanData.forEach((kanbanDatum) => {
+          addKanbanTask(
+            kanbanDatum.name,
+            kanbanDatum.description,
+            PossibleKanbanStatuses[
+              Math.floor(Math.random() * PossibleKanbanStatuses.length)
             ]
           )
         })
@@ -245,6 +246,6 @@ export {
   useDummyChatData,
   useDummyTaskData,
   useDummyRecruitingEventData,
-  useDummyEquipmentData,
+  useDummyKanbanData,
   useDummySaleData,
 }

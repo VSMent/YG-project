@@ -7,7 +7,7 @@ import MainPage from './MainPage'
 import EmployeesPage from './EmployeesPage'
 import CommunicationPage from './CommunicationPage'
 import PersonnelPage from './PersonnelPage'
-import ProductionPage from './ProductionPage'
+import KanbanPage from './KanbanPage'
 import FinancesPage from './FinancesPage'
 import ClientsPage from './ClientsPage'
 import SelfManagementPage from './SelfManagementPage'
@@ -50,9 +50,9 @@ const Router = createBrowserRouter(
           element: <FinancesPage />,
         },
         {
-          path: NAV_LINKS.PRODUCTION.to,
-          handle: { name: NAV_LINKS.PRODUCTION.name },
-          element: <ProductionPage />,
+          path: NAV_LINKS.KANBAN.to,
+          handle: { name: NAV_LINKS.KANBAN.name },
+          element: <KanbanPage />,
         },
         {
           path: NAV_LINKS.COMMUNICATION.to,

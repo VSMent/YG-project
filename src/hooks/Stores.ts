@@ -10,7 +10,7 @@ import {
   RecruitingStatus,
   PossibleStatuses as PossibleRecruitingStatuses,
 } from '@type/RecrutingEvent'
-import { Equipment, EquipmentStatus } from '@type/Equipment'
+import { KanbanTask, KanbanStatus } from '@type/KanbanTask'
 import { Sale } from '@type/Sale'
 
 type UserStore = {
@@ -275,41 +275,41 @@ export const useRecruitingEventStore = create<RecruitingEventStore>()(
   )
 )
 
-type EquipmentStore = {
-  equipment: Equipment[]
-  lastEquipmentId: number
-  addEquipment: (
+type KanbanTaskStore = {
+  kanbanTasks: KanbanTask[]
+  lastKanbanTaskId: number
+  addKanbanTask: (
     name: string,
     description: string,
-    status: EquipmentStatus
+    status: KanbanStatus
   ) => void
 }
 
-export const useEquipmentStore = create<EquipmentStore>()(
+export const useKanbanTaskStore = create<KanbanTaskStore>()(
   devtools(
     persist(
       (set, get) => ({
-        equipment: [],
-        lastEquipmentId: 0,
-        addEquipment: (name, description, status) => {
-          const newEquipment: Equipment = {
-            id: ++get().lastEquipmentId,
+        kanbanTasks: [],
+        lastKanbanTaskId: 0,
+        addKanbanTask: (name, description, status) => {
+          const newKanbanTask: KanbanTask = {
+            id: ++get().lastKanbanTaskId,
             name,
             description,
             status,
           }
           set(
             produce((state) => {
-              state.equipment.push(newEquipment)
+              state.kanbanTasks.push(newKanbanTask)
             }),
             false,
-            `add equipment ${name}`
+            `add kanban-task ${name}`
           )
         },
       }),
-      { name: 'equipment' }
+      { name: 'kanban-tasks' }
     ),
-    { name: 'equipment' }
+    { name: 'kanban-tasks' }
   )
 )
 

@@ -5,7 +5,7 @@ const NAV_LINKS = {
   CLIENTS: { to: '/clients', name: 'Clients' },
   PERSONNEL: { to: '/personnel', name: 'Personnel' },
   FINANCES: { to: '/finances', name: 'Finances' },
-  PRODUCTION: { to: '/production', name: 'Production' },
+  KANBAN: { to: '/kanban', name: 'Kanban' },
   COMMUNICATION: { to: '/communication', name: 'Communication' },
   SELF_MANAGEMENT: { to: '/self-management', name: 'Self management' },
 }

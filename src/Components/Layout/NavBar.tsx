@@ -1,8 +1,8 @@
 import {
   Briefcase,
   CircleDollarSign,
-  Factory,
   Home,
+  Kanban,
   MessagesSquare,
   PersonStanding,
   Users,
@@ -36,11 +36,7 @@ const NavBar = () => {
           icon={<CircleDollarSign />}
           name="Finances"
         />
-        <NavBarLink
-          to={NAV_LINKS.PRODUCTION.to}
-          icon={<Factory />}
-          name="Production"
-        />
+        <NavBarLink to={NAV_LINKS.KANBAN.to} icon={<Kanban />} name="Kanban" />
         <NavBarLink
           to={NAV_LINKS.COMMUNICATION.to}
           icon={<MessagesSquare />}

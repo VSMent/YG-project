@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router'
 import Router from './Components/Router'
 import {
   useDummyChatData,
-  useDummyEquipmentData,
+  useDummyKanbanData,
   useDummyRecruitingEventData,
   useDummySaleData,
   useDummyTaskData,
@@ -15,7 +15,7 @@ function App() {
   useDummyChatData()
   useDummyTaskData()
   useDummyRecruitingEventData()
-  useDummyEquipmentData()
+  useDummyKanbanData()
   useDummySaleData()
 
   return <RouterProvider router={Router} />

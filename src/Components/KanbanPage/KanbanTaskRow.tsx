@@ -1,7 +1,7 @@
-import { Equipment } from '@type/Equipment'
+import { KanbanTask } from '@type/KanbanTask'
 
-type EquipmentRowProps = { item: Equipment }
-const EquipmentRow = ({ item }: EquipmentRowProps) => {
+type KanbanTaskRowProps = { item: KanbanTask }
+const KanbanTaskRow = ({ item }: KanbanTaskRowProps) => {
   return (
     <div
       className={
@@ -13,4 +13,4 @@ const EquipmentRow = ({ item }: EquipmentRowProps) => {
     </div>
   )
 }
-export default EquipmentRow
+export default KanbanTaskRow
